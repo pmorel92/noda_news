@@ -9,3 +9,7 @@ from .models import Blog, Event, Theme, Report_Link, Media_Org
 
 def index(request):
 	return render (request, 'nodanews/index.html')
+
+def indexUC(request):
+    
+    return render (request, 'nodanews/indexUC.html')

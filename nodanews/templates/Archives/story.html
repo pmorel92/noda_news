@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-109012884-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-109012884-1');
+</script>
+	
+<meta charset="utf-8">
+<title>{{stf.headline}}</title>
+{% load static from staticfiles %}
+<link rel="image_src" href="{% static 'NN-FB-Pro_pic.png' %}"/> 
+<meta property='og:image' content='https://nodastorage.s3.amazonaws.com/media/{{node.head_image}}'/>
+<link href="{% static 'css_style_sheets/stf.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'css_style_sheets/nav.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'favicon.ico' %}" rel='shortcut icon'>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+
+<body>
+<div id="fb-root"></div>
+
+  <header>
+  	    		<form method="get" action="https://www.google.com/search">
+			<input type="hidden" name="sitesearch" value="www.nodanews.com" />
+			<input type="text" size="15" name="q" placeholder="Search" />
+			<button type="submit"></button>
+		</form>
+    <nav>
+      <a href="http://www.nodanews.com"><img src="{% static 'images/elements/nn_logo_horizontal.svg' %}" alt="" id="logo"></a>
+          <img src="{% static 'images/elements/Hamburger_icon.svg.png' %}" alt="" id="burger">
+        <ul id='nav-list'>
+          <li class='nav-list-item'> <a href="http://www.nodanews.com/media-org-directory">Media Org. Directory</a></li>
+          <li class='nav-list-item'><a href="http://www.nodanews.com/archives">Archives</a></li> 
+          <li class='nav-list-item'><a href="http://www.nodanews.com/about">About Noda News</a></li>
+        </ul>
+
+  	</nav>
+  </header>
+<div id="central-column">
+	<h1 class="headline">{{stf.headline}}</h1>
+	
+	<img src="https://nodastorage.s3.amazonaws.com/media/{{stf.image}}" id="image_1" alt=""/>
+	<p class="photo_credit">Credit: {{stf.credit}}</p>
+	<p class="updated">Updated: {{stf.date_updated}}</p>
+	<a href="http://www.nodanews.com/hub/{{stf.hub.id}}/{{stf.hub.slug}}" class="hub" target="_blank">
+		<h2>Click Here for More Info on {{stf.hub.name}}</h2>
+	</a>
+	<a href="https://www.nodanews.com/node-dir/{{stf.node_dir.id}}/{{stf.node_dir.slug}}" class="node_dir" target="_blank"><h2>{{stf.node_dir.name}}</h2>
+	</a>
+	{% if stf.videoQ %}
+	<iframe class="video_embed" width="420" height="236" src="{{stf.video}}" frameborder="0" allowfullscreen></iframe>
+	{% endif %}
+	<p class="description">{{stf.update|linebreaksbr}}</p>
+	<ul class="link_list">	
+	{% for stf_link in stf_links %}
+		<li class="link">
+			<a href="{{stf_link.url}}" style="text-decoration: none;color: black" class="link" target="_blank">
+				<h3 class="link">{{stf_link.title}}</a><a href="http://www.nodanews.com/media_dir/{{stf_link.media.id}}/{{stf_link.media.slug}}" style="text-decoration: none;color: orange" target="_blank">-- {{stf_link.media.name}}</h3>
+				</a>
+		</li>
+		{% endfor %}
+	</ul>	
+<script id="dsq-count-scr" src="//nodanews.disqus.com/count.js" async></script>
+
+<div id="disqus_thread"></div>
+<script>
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://nodanews.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</body>
+</html>
+
+
