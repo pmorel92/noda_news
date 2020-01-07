@@ -8,7 +8,7 @@ from django.db.models import F, Q
 from .models import Blog, Event, Theme, Report_Link, Media_Org 
 
 def index(request):
-	return render (request, 'nodanews/index.html')
+	return render (request, 'index.html')
 
 def indexUC(request):
     
