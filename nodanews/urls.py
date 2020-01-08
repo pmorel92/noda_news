@@ -10,7 +10,7 @@ urlpatterns = [
 
 	path('about/', views.about, name='about'),
 	path('archives/', views.archives, name='archives'),	
-	path('node-dir/$', views.node_dir, name='node_dir_index'),
+	path('node-dir/', views.node_dir, name='node_dir_index'),
 	path('node-dir/<int:id>/<slug:slug>/', views.node_dir_part, name='node_dir'),
 	path('media-org-directory/', views.media_dir_athena, name='media_dir_test'),	
 	path('node/<int:id>', views.node, name='node'),
