@@ -24,6 +24,6 @@ xversion.register_models()
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('xadmin/', include(xadmin.site.urls),
+    path('xadmin/', include(xadmin.site.urls)),
 	path('', include('nodanews.urls')),	
 ]
