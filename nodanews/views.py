@@ -55,7 +55,6 @@ def media_dir_athena(request):
 
 def archives(request):
     node_dirs = Node_Dir.objects.order_by('name')
-    blogs = Blog.objects.all().order_by("-date_posted")
     indepths = Analysis.objects.all().order_by("-date_posted")
     issues = PoliticalIssue.objects.all().order_by("-id")
     nodes_by_dir = {
