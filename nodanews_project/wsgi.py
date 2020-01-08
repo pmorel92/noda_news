@@ -11,8 +11,11 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 from whitenoise import WhiteNoise
+from dj_static import Cling
+
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'nodanews_project.settings')
 
+application = Cling(get_wsgi_application())
 application = get_wsgi_application()
 application = WhiteNoise(application, root='/nodanews_project/staticfiles')

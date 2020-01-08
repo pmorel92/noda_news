@@ -1,5 +1,6 @@
 Django==3.0.2
-django-xadmin
+django-suit
+dj-static
 Pillow==7.0.0
 argparse==1.2.1
 boto==2.45.0
