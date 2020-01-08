@@ -41,8 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'nodanews',
 #    'nodasf',
-    'suit',
-    'tinymce',
+#    'suit',
+#    'tinymce',
 ]
 
 MIDDLEWARE = [
