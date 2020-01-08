@@ -1,5 +1,5 @@
 from django.db import models
-#from tinymce.models import HTMLField
+from tinymce.models import HTMLField
 from django.db.models.aggregates import Count
 from datetime import datetime
 

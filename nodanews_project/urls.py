@@ -18,7 +18,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-#    path('tinymce/', include('tinymce.urls')),    
+    path('tinymce/', include('tinymce.urls')),    
 #	path('', include('nodasf.urls')),
 	path('', include('nodanews.urls')),	
 ]
