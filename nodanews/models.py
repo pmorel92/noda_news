@@ -73,12 +73,12 @@ class Blog(models.Model):
     date_posted = models.DateField(auto_now_add=True)
     text = models.TextField()
     slug = models.SlugField(max_length=200, default=' ') 
-#    event = models.ForeignKey(
-#        'Event',
-#        on_delete=models.CASCADE,
-#        blank=True,
-#        null=True,
-#        default='')    
+    event = models.ForeignKey(
+        'Event',
+        on_delete=models.CASCADE,
+        blank=True,
+        null=True,
+        default=1)    
     def __str__(self):
         return "{}".format(self.headline)
     class Meta:
