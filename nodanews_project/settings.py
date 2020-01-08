@@ -33,7 +33,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-    'suit',
+#    'suit',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -161,7 +161,7 @@ TINYMCE_DEFAULT_CONFIG = {
     'custom_undo_redo_levels':10 ,
 }
 # Django Suit configuration example
-SUIT_CONFIG = {
+#SUIT_CONFIG = {
     # header
     # 'ADMIN_NAME': 'Django Suit',
     # 'HEADER_DATE_FORMAT': 'l, j. F Y',
@@ -188,4 +188,4 @@ SUIT_CONFIG = {
 
     # misc
     # 'LIST_PER_PAGE': 15
-}
+#}
