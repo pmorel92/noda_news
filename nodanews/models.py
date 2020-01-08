@@ -1,5 +1,4 @@
 from django.db import models
-#from tinymce.models import HTMLField
 from django.db.models.aggregates import Count
 from datetime import datetime
 
@@ -38,24 +37,10 @@ class Media_Org(models.Model):
     date_posted = models.DateTimeField(auto_now_add=True)
     home_page = models.CharField(max_length=200, default='')
     country = models.CharField(max_length=100, default='')
-#   region = models.ForeignKey('Region',
-#   default=1,
-#    null=True,
-#    on_delete=models.CASCADE,)
     date_founded = models.DateField(default='1956-02-27')
     logo = models.ImageField(upload_to='media/logos')
     description = models.TextField()
     ready = models.BooleanField(default=False)
-#    political_lean = models.ForeignKey(
-#        'Political_Lean',
-#        default=1,
-#        null=True,
-#        on_delete=models.PROTECT,)
-#    media_character = models.ForeignKey(
-#        'Media_Character',
-#        default=1,
-#        null=True,
-#        on_delete=models.PROTECT,)
     slug = models.SlugField(max_length=100, default=' ')
 
     
@@ -73,8 +58,7 @@ class Report_Link(models.Model):
         on_delete=models.CASCADE,)
     event = models.ForeignKey(
         'Event',
-        on_delete=models.CASCADE,
-        default=1)
+        on_delete=models.CASCADE,)
     imageQ = models.BooleanField(default=False)
     image = models.ImageField(upload_to='media/temp', default='', blank=True)        
 
@@ -89,10 +73,12 @@ class Blog(models.Model):
     date_posted = models.DateField(auto_now_add=True)
     text = models.TextField()
     slug = models.SlugField(max_length=200, default=' ') 
-    event = models.ForeignKey(
-        'Event',
-        on_delete=models.CASCADE,
-        default=1)    
+#    event = models.ForeignKey(
+#        'Event',
+#        on_delete=models.CASCADE,
+#        blank=True,
+#        null=True,
+#        default='')    
     def __str__(self):
         return "{}".format(self.headline)
     class Meta:
