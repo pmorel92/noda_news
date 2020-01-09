@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',    
     'django.contrib.messages',
     'nodanews',
+#    'nodasf',
 ]
 
 MIDDLEWARE = [
@@ -87,8 +88,16 @@ DATABASES = {
         'HOST': os.environ['DB_HOST'],
         'PORT': os.environ['DB_PORT'],
     },
+#    'nodasfdb': {
+#        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#        'NAME': os.environ['DB_NAME_SF'],
+#        'USER': os.environ['DB_USER_SF'],
+#        'PASSWORD': os.environ['DB_PASSWORD_SF'],
+#        'HOST': os.environ['DB_HOST_SF'],
+#        'PORT': os.environ['DB_PORT'],
+#    },
 }
-
+#DATABASE_ROUTERS = ['path.to.DbRouter', ]
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators

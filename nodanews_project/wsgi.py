@@ -18,4 +18,4 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'nodanews_project.settings')
 
 #application = Cling(get_wsgi_application())
 application = get_wsgi_application()
-application = WhiteNoise(application, root='/nodanews_project/staticfiles')
+application = WhiteNoise(application, root='/nodanews_project/static')

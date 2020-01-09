@@ -15,8 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+#from .nodasf.admin import nodasf_admin
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+#    path('sf-admin/', nodasf_admin.site.urls),    
 	path('', include('nodanews.urls')),	
+#	path('sf', include('nodasf.urls'))
 ]
