@@ -30,11 +30,11 @@ class DbRouter:
            return True
         return None
 
-    def allow_migrate(self, db, app_label, model_name=None, **hints):
+    def allow_migrate(self, db, app_app_label, model_name=None, **hints):
         """
         Make sure the auth app only appears in the 'nodasfdb'
         database.
         """
-        if app_label == 'nodasf':
+        if app_app_label == 'nodasf':
             return db == 'nodasfdb'
         return None
