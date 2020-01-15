@@ -8,7 +8,7 @@ admin.site.register(Theme)
 admin.site.register(Media_Org)
 admin.site.register(Blog)
 admin.site.register(Report_Link)
-
+admin.site.register(About)
 ##NodaSF###
 
 
@@ -21,7 +21,7 @@ admin.site.register(Report_Link)
 #admin.site.register(Link)
 #admin.site.register(Perspective)
 #admin.site.register(Political_Lean)
-#admin.site.register(About)
+
 #admin.site.register(Topic_Link)
 #admin.site.register(Media_Character)
 #admin.site.register(Journalist)

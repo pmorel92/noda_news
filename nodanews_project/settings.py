@@ -88,17 +88,18 @@ DATABASES = {
         'HOST': os.environ['DB_HOST'],
         'PORT': os.environ['DB_PORT'],
     },
-#    'nodasfdb': {
-#        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#        'NAME': os.environ['DB_NAME_SF'],
-#        'USER': os.environ['DB_USER_SF'],
-#        'PASSWORD': os.environ['DB_PASSWORD_SF'],
-#        'HOST': os.environ['DB_HOST_SF'],
-#        'PORT': os.environ['DB_PORT'],
-#    },
+    'nodasfdb': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': os.environ['DB_NAME_SF'],
+        'USER': os.environ['DB_USER_SF'],
+        'PASSWORD': os.environ['DB_PASSWORD_SF'],
+        'HOST': os.environ['DB_HOST_SF'],
+        'PORT': os.environ['DB_PORT'],
+    },
 }
-#DATABASE_ROUTERS = ['path.to.DbRouter', ]
-
+#DATABASE_ROUTERS = [ '/dbrouter.py' ]
+DATABASE_APPS_MAPPING = {'nodanews': 'default',
+                        'nodasf':'nodasfdb'}
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
@@ -146,8 +147,8 @@ STATICFILES_DIRS = (
 )
 #STATIC_URL = '/static/'
 #STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
+#db_from_env = dj_database_url.config(conn_max_age=500)
+#DATABASES['default', 'nodasfdb',].update(db_from_env)
 AWS_STORAGE_BUCKET_NAME = os.environ['S3_BUCKET']
 AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
 AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
@@ -162,13 +163,13 @@ MEDIA_URL = "https://{}/{}/".format(AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
 DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
 #DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
-TINYMCE_JS_URL = os.path.join(STATIC_URL, 'tinymce/js/tinymce/tinymce.min.js')
-TINYMCE_DEFAULT_CONFIG = {
-    'plugins' :'table, spellchecker, paste, searchreplace',
-    'theme' : "advanced",
-    'cleanup_on_startup ':True ,
-    'custom_undo_redo_levels':10 ,
-}
+#TINYMCE_JS_URL = os.path.join(STATIC_URL, 'tinymce/js/tinymce/tinymce.min.js')
+#TINYMCE_DEFAULT_CONFIG = {
+#    'plugins' :'table, spellchecker, paste, searchreplace',
+#    'theme' : "advanced",
+#    'cleanup_on_startup ':True ,
+#    'custom_undo_redo_levels':10 ,
+#}
 # Django Suit configuration example
 #SUIT_CONFIG = {
     # header

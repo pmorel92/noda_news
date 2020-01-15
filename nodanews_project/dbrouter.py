@@ -1,43 +1,40 @@
-class NodaSFDatabaseRouter(object):
-    """
-    Determine how to route database calls for an app's models (in this case, for an app named Example).
-    All other models will be routed to the next router in the DATABASE_ROUTERS setting if applicable,
-    or otherwise to the default database.
-    """
 
+
+class DbRouter:
+    """
+    A router to control all database operations on models in the
+    user application.
+    """
     def db_for_read(self, model, **hints):
-        """Send all read operations on Example app models to `example_db`."""
+        """
+        Attempts to read user models go to nodasfdb.
+        """
         if model._meta.app_label == 'nodasf':
             return 'nodasfdb'
         return None
 
     def db_for_write(self, model, **hints):
-        """Send all write operations on Example app models to `example_db`."""
+        """
+        Attempts to write user models go to nodasfdb.
+        """
         if model._meta.app_label == 'nodasf':
             return 'nodasfdb'
         return None
 
     def allow_relation(self, obj1, obj2, **hints):
-        """Determine if relationship is allowed between two objects."""
-
-        # Allow any relation between two models that are both in the Example app.
-        if obj1._meta.app_label == 'nodasf' and obj2._meta.app_label == 'nodasf':
-            return True
-        # No opinion if neither object is in the Example app (defer to default or other routers).
-        elif 'nodasf' not in [obj1._meta.app_label, obj2._meta.app_label]:
-            return None
-
-        # Block relationship if one object is in the Example app and the other isn't.
-            return False
+        """
+        Allow relations if a model in the user app is involved.
+        """
+        if obj1._meta.app_label == 'nodasf' or \
+           obj2._meta.app_label == 'nodasf':
+           return True
+        return None
 
     def allow_migrate(self, db, app_label, model_name=None, **hints):
-        """Ensure that the Example app's models get created on the right database."""
+        """
+        Make sure the auth app only appears in the 'nodasfdb'
+        database.
+        """
         if app_label == 'nodasf':
-            # The Example app should be migrated only on the example_db database.
             return db == 'nodasfdb'
-        elif db == 'nodasfdb':
-            # Ensure that all other apps don't get migrated on the example_db database.
-            return False
-
-        # No opinion for all other scenarios
         return None
