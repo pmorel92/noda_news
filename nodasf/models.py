@@ -1,8 +1,10 @@
 from django.db import models
-from datetime import datetime
 from django.db.models.aggregates import Count
+from datetime import datetime
 
+# Create your models here.
 
+###########NodaSF##############
 class County(models.Model):
     name = models.CharField(max_length=100, default='')
     image = models.ImageField(upload_to='media/stock', default='', blank=True) 
@@ -15,6 +17,7 @@ class County(models.Model):
         return self.name
     
     class Meta:
+        app_label = 'nodasf'        
         ordering = ('name',)
 
 class Category(models.Model):
@@ -23,6 +26,7 @@ class Category(models.Model):
         return "{}/{}".format(self.name, self.id)
     class Meta:
         ordering = ('name',)        
+        app_label = 'nodasf'
         
 class Agency(models.Model):
     name = models.CharField(max_length=100, default='')
@@ -44,7 +48,7 @@ class Agency(models.Model):
         return self.name    
     class Meta:
         ordering = ('name',)
-
+        app_label = 'nodasf'
 
 class Genre(models.Model):
     name = models.CharField(max_length=100, default='')
@@ -52,6 +56,8 @@ class Genre(models.Model):
 
     def __str__(self):
         return "{}/{}".format(self.name, self.id)
+    class Meta:
+        app_label = 'nodasf'        
 
 class Issue(models.Model):
     name = models.CharField(max_length=100, default='')
@@ -63,6 +69,7 @@ class Issue(models.Model):
         return "{}/{}".format(self.name, self.id)    
     class Meta:
         ordering = ('name',)
+        app_label = 'nodasf'        
 
 class Organization(models.Model):
     name = models.CharField(max_length=100, default='')
@@ -84,7 +91,7 @@ class Organization(models.Model):
         return self.name    
     class Meta:
         ordering = ('name',)
-
+        app_label = 'nodasf'
 
 class City(models.Model):
     name = models.CharField(max_length=100, default='')
@@ -103,7 +110,8 @@ class City(models.Model):
         return self.name        
     class Meta:
         ordering = ('name',)        
-
+        app_label = 'nodasf'
+        
 class Program(models.Model):
     name = models.CharField(max_length=200, default='name')
     homepage = models.CharField(max_length=300, default=' ')    
@@ -126,6 +134,7 @@ class Program(models.Model):
         return self.name     
     class Meta:
         ordering = ('name',)  
+        app_label = 'nodasf'
         
 class Party(models.Model):
     name = models.CharField(max_length=100, default='')
@@ -134,12 +143,18 @@ class Party(models.Model):
     def __str__(self):
         return self.name    
 
+    class Meta:
+        app_label = 'nodasf'        
+
 class Level(models.Model):
     name = models.CharField(max_length=100, default='')
     slug = models.SlugField(max_length=100, default=' ')
 
     def __str__(self):
         return self.name    
+
+    class Meta:
+        app_label = 'nodasf'        
         
 class District(models.Model):
     name = models.CharField(max_length=100, default='')
@@ -156,7 +171,8 @@ class District(models.Model):
     def __str__(self):
         return self.name   
     class Meta:
-        ordering = ('name',)  
+        ordering = ('name',)
+        app_label = 'nodasf'        
         
 class Venue(models.Model):
     name = models.CharField(max_length=100, default='')
@@ -179,6 +195,7 @@ class Venue(models.Model):
         return self.name    
     class Meta:
         ordering = ('name',)
+        app_label = 'nodasf'        
         
 class Event(models.Model):
     name = models.CharField(max_length=200)
@@ -212,7 +229,8 @@ class Event(models.Model):
         return self.name
 
     class Meta:
-        ordering = ('-date',)  
+        ordering = ('-date',)
+        app_label = 'nodasf'        
 
 class Politician(models.Model):
     first_name = models.CharField(max_length=100, default='first')
@@ -238,7 +256,7 @@ class Politician(models.Model):
     homepage = models.CharField(max_length=300, default='')
     description = models.TextField()
     upcoming = models.ForeignKey(
-        'Event',
+        'SF_Event',
         null=True,
         on_delete=models.SET_NULL,
         blank=True)    
@@ -247,6 +265,9 @@ class Politician(models.Model):
 
     def __str__(self):
         return self.last_name    
+
+    class Meta:
+        app_label = 'nodasf'
         
 class Bureaucrat(models.Model):
     last_name = models.CharField(max_length=100, default='last')
@@ -265,49 +286,12 @@ class Bureaucrat(models.Model):
     def __str__(self):
         return self.last_name    
                 
-class Media_Org(models.Model):
-    name = models.CharField(max_length=100, default='')
-    home_page = models.CharField(max_length=200, default='')
-    date_founded = models.DateField(default='1956-02-27')
-    logo = models.ImageField(upload_to='media/logos')
-    description = models.TextField()
-    city = models.ForeignKey(
-        'City',
-        on_delete=models.PROTECT,) 
-    county = models.ForeignKey(
-        'County',
-        blank=True,    
-        on_delete=models.PROTECT,)
-    slug = models.SlugField(max_length=100, default=' ')
-
-    
-    def __str__(self):
-        return self.name
     class Meta:
-        ordering = ('name',)
+        app_label = 'nodasf'
         
-class Journalist(models.Model):
-    first_name = models.CharField(max_length=200, default='first')    
-    last_name = models.CharField(max_length=200, default='last')    
-    contact = models.CharField(max_length=200, default='')
-    organization = models.ForeignKey(
-        'Media_Org',
-        on_delete=models.PROTECT,)
-    bio = models.TextField(default='bio goes here')
-    picture = models.ImageField(upload_to='media/faces', default=" ")
-    slug = models.SlugField(max_length=100, default=' ')
-    def __str__(self):
-        return self.last_name
-    class Meta:
-        ordering = ('last_name',)
-
-
 class Local_Link(models.Model):
     url = models.CharField(max_length=300, default='')
     headline = models.CharField(max_length=150, default='')
-    media = models.ForeignKey(
-        'Media_Org',
-        on_delete=models.CASCADE,)
     posted = models.DateTimeField(auto_now_add=True, blank=True)
     county = models.ForeignKey(
         'County',
@@ -324,10 +308,6 @@ class Local_Link(models.Model):
         on_delete=models.PROTECT,
        null=True,    
         blank=True,)        
-    journalist = models.ForeignKey('Journalist',
-    null=True,
-    blank=True,
-    on_delete=models.PROTECT,)
     imageQ = models.BooleanField(default=False)
     image = models.ImageField(upload_to='media/stock', default='', blank=True)
 
@@ -336,81 +316,4 @@ class Local_Link(models.Model):
 
     class Meta:
         ordering = ('-posted',)
-
-class STF_Hub(models.Model):
-    name = models.CharField(max_length=100, default='')
-    banner = models.ImageField(upload_to='media/stock')
-    credit = models.CharField(max_length=200, default='')
-    county = models.ForeignKey(
-        'County',
-        blank=True,    
-        null=True,         
-        on_delete=models.CASCADE,)
-    city = models.ForeignKey(
-        'City',
-        blank=True,
-        null=True,         
-        on_delete=models.CASCADE,)    
-    date_updated = models.DateTimeField(auto_now=True, blank=True)
-    description = models.TextField(default='', blank=True)
-    issue = models.ForeignKey(
-        'Issue',
-        null=True,        
-        on_delete=models.CASCADE,
-        blank=True,)        
-    slug = models.SlugField(max_length=200, default=' ') 
-
-    def __str__(self):
-        return self.name
-    class Meta:
-        ordering = ('-date_updated',)        
-        
-class STF(models.Model):
-    headline = models.CharField(max_length=200)
-    image = models.ImageField(upload_to='media/stock', default='')
-    credit = models.CharField(max_length=200, default='')     
-    update = models.TextField()
-    date_updated = models.DateTimeField(auto_now_add=True)
-    videoQ = models.BooleanField(default=False)
-    video = models.CharField(max_length=500, default='', blank=True) 
-    hub= models.ForeignKey(
-        'STF_Hub',
-        on_delete=models.CASCADE)
-    county = models.ForeignKey(
-        'County',
-        blank=True,   
-        null=True,  
-        on_delete=models.CASCADE,)
-    city = models.ForeignKey(
-        'City',
-        blank=True,
-        null=True,         
-        on_delete=models.CASCADE,)
-    issue = models.ForeignKey(
-        'Issue',
-        null=True,    
-        on_delete=models.CASCADE,
-        blank=True,)            
-    slug = models.SlugField(max_length=200, default=' ') 
-
-    def __str__(self):
-        return "{}/{}".format(self.headline, self.hub)  
-    class Meta:
-        ordering = ('-date_updated',)    
-
-
-class STF_Link(models.Model):
-    url = models.CharField(max_length=300, default='', blank=True)
-    title = models.CharField(max_length=150, default='', blank=True)
-    media = models.ForeignKey(
-        'Media_Org',
-        on_delete=models.CASCADE,)
-    story = models.ForeignKey(
-        'STF',
-        on_delete=models.CASCADE,)
-    journalist = models.ForeignKey('Journalist',
-    null=True,
-    blank=True,
-    on_delete=models.PROTECT,)        
-    def __str__(self):
-        return "{}/{}".format(self.title, self.story)
+        app_label = 'nodasf'        
