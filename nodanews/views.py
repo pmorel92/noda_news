@@ -5,14 +5,21 @@ from django.template.defaulttags import register
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.urls import reverse
 from django.db.models import F, Q
-from .models import Event, Theme, Report_Link, Blog, Node, Media_Org, Perspective, Link, Node_Dir, Region, Journalist, About, Topic_Link, PoliticalBiasNews, Blog, Analysis, AnalLink, AnalPerspective, PoliticalIssue, STF, STF_Hub, STF_Link, Feature, Feature_Link
+from .models import Event, Theme, Report_Link, Other_Link, Blog, Node, Media_Org, Perspective, Link, Node_Dir, Region, Journalist, About, Topic_Link, PoliticalBiasNews, Blog, Analysis, AnalLink, AnalPerspective, PoliticalIssue, STF, STF_Hub, STF_Link, Feature, Feature_Link
 
+@register.filter
+def get_item(dictionary, key):
+    return dictionary.get(key)
+    
+    
 def index(request):
 	return render (request, 'index.html')
 
 def indexUC(request):
-    
-    return render (request, 'indexUC.html')
+    events = Event.objects.all().order_by('-date_updated')[0:5]
+    blogs = Blog. objects.filter(event__id=1)
+    other_links = Other_Link.objects.all().order_by('-posted')[0:15]    
+    return render (request, 'indexUC.html', {'events': events, 'blogs': blogs, 'other_links': other_links})
 
 def blog(request, slug, blog_id):
 	blog = get_object_or_404(Blog, pk=blog_id)
@@ -21,9 +28,6 @@ def blog(request, slug, blog_id):
 
 ############Archives#################
 
-@register.filter
-def get_item(dictionary, key):
-    return dictionary.get(key)
 
 
 def political_issue(request, slug, issue_id):
@@ -60,7 +64,7 @@ def archives(request):
     nodes_by_dir = {
         n: Node.objects.filter(node_direc__id = n.id).order_by('-date_posted') for n in node_dirs
     }    
-    return render(request, 'Archives/archives.html', {'node_dirs': node_dirs, 'blogs': blogs, 'indepths': indepths, 'issues': issues, 'nodes_by_dir': nodes_by_dir})
+    return render(request, 'Archives/archives.html', {'node_dirs': node_dirs, 'indepths': indepths, 'issues': issues, 'nodes_by_dir': nodes_by_dir})
 
 
 

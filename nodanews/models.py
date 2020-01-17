@@ -67,7 +67,22 @@ class Report_Link(models.Model):
         
     class Meta:
         ordering = ('-posted',)
+class Other_Link(models.Model):
+    url = models.CharField(max_length=300, default='', blank=True)
+    title = models.CharField(max_length=150, default='', blank=True)
+    posted = models.DateTimeField(auto_now=True, blank=True)    
+    media = models.ForeignKey(
+        'Media_Org',
+        on_delete=models.CASCADE,)
+    imageQ = models.BooleanField(default=False)
+    image = models.ImageField(upload_to='media/temp', default='', blank=True)        
 
+    def __str__(self):
+        return "{}/{}".format(self.title, self.media.name)  
+        
+    class Meta:
+        ordering = ('-posted',)
+        
 class Blog(models.Model):
     headline = models.CharField(max_length=200, default='')
     date_posted = models.DateField(auto_now_add=True)

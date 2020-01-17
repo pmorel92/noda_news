@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Event, Theme, Report_Link, Media_Org, Blog, Node, Media_Org, Link, Perspective, Node_Dir, Region, Journalist, Political_Lean, Media_Character, About, Topic_Link, PoliticalBiasNews, Blog, Analysis, AnalLink, AnalPerspective, PoliticalIssue, STF, STF_Hub, STF_Link, Feature, Feature_Link 
+from .models import Event, Theme, Other_Link, Report_Link, Media_Org, Blog, Node, Media_Org, Link, Perspective, Node_Dir, Region, Journalist, Political_Lean, Media_Character, About, Topic_Link, PoliticalBiasNews, Blog, Analysis, AnalLink, AnalPerspective, PoliticalIssue, STF, STF_Hub, STF_Link, Feature, Feature_Link 
 
 
 
@@ -9,6 +9,7 @@ admin.site.register(Media_Org)
 admin.site.register(Blog)
 admin.site.register(Report_Link)
 admin.site.register(About)
+admin.site.register(Other_Link)
 
 ####Archives###
     

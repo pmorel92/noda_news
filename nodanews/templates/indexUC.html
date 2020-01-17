@@ -15,12 +15,32 @@
 <title>Noda News</title>
 {% load static from staticfiles %}
 <link rel="image_src" href="{% static 'NN-FB-Pro_pic.png' %}"/> 
-<link href="{% static 'css_style_sheets/index.css' %}" rel="stylesheet" type="text/css">
-<link href="{% static 'css_style_sheets/nav.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'css_style_sheets/indexUC.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'css_style_sheets/navi.css' %}" rel="stylesheet" type="text/css">
 <link href="{% static 'favicon.ico' %}" rel='shortcut icon'>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 </head>
+<body>
+  <header>
+  	    		<form method="get" action="https://www.google.com/search">
+			<input type="hidden" name="sitesearch" value="www.nodanews.com" />
+			<input type="text" size="15" name="q" placeholder="Search" />
+			<button type="submit"></button>
+		</form>
+    <nav>
+      <a href="http://www.nodanews.com"><img src="{% static 'images/elements/nn_logo_horizontal.svg' %}" alt="" id="logo"></a>
+          <img src="{% static 'images/elements/Hamburger_icon.svg.png' %}" alt="" id="burger">
+        <ul id='nav-list'>
+          <li class='nav-list-item'> <a href="http://www.nodanews.com/media-org-directory">Media Org. Directory</a></li>
+          <li class='nav-list-item'><a href="http://www.nodanews.com/archives">Archives</a></li> 
+          <li class='nav-list-item'><a href="http://www.nodanews.com/about">About Noda News</a></li>
+        </ul>
+  	</nav>
+</header>
+<div id='top'>
+  {% for event in events %}
+  {% endfor %}
+</div>
 
-<h1> Noda News Will Return </h1>
-
+</body>
 </html>
