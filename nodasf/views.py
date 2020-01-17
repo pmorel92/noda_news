@@ -8,8 +8,8 @@ from django.db.models import F, Q
 from .models import Venue, Agency, Genre, Issue, Party, Level, Event, Politician, Local_Link, District, Category, Organization, Program, Bureaucrat, Story, Blog, Report_Link, Media_Org
 
 def index(request):
-	return render (request, 'index.html')
+	return render (request, 'sf-index.html')
 
 def indexUC(request):
     
-    return render (request, 'indexUC.html')
+    return render (request, 'sf-indexUC.html')
