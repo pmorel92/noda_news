@@ -3,6 +3,7 @@ from django.urls import include, path, re_path
 
 from . import views
 
+#NodaSF
 urlpatterns = [
-	path('', views.index, name='index'),
+	path('sf/', views.index, name='index'),
 ]
