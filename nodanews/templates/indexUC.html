@@ -43,10 +43,10 @@
           {% for feature in features %}
               <li>  
                   <a href="https://www.nodanews.com/event/{{feature.id}}/{{feature.slug}}"  target="_blank" class="feature_headline"><p>{{feature.headline}}</p>
-                  <img src="https://nodastorage.s3.amazonaws.com/media/{{feature.image}}" class="feature_image">
+                  <img src="https://nodastorage.s3.amazonaws.com/media/{{feature.image}}" class="feature_image"></a>
                   <p class='feature_lead'>{{feature.lead|linebreaksbr}}</p>
                   <p class="feature_updated">Updated: {{feature.date_updated}}</p>
-                  </a>
+                 
             </li>
           {% endfor %}
       </ul>
@@ -56,10 +56,10 @@
             {% for recent_event in recent_events %}
               <li>  
                   <a href="https://www.nodanews.com/event/{{recent_event.id}}/{{recent_event.slug}}"  target="_blank" class="recent_event_headline"><p>{{recent_event.headline}}</p>
-                  <img src="https://nodastorage.s3.amazonaws.com/media/{{recent_event.image}}" class="recent_event_image">
+                  <img src="https://nodastorage.s3.amazonaws.com/media/{{recent_event.image}}" class="recent_event_image"></a>
                   <p class='recent_event_lead'>{{recent_event.lead|linebreaksbr}}</p>                  
                   <p class="recent_event_updated">Updated: {{recent_event.date_updated}}</p>
-                  </a>
+
             </li>
           {% endfor %}
       </ul>
