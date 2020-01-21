@@ -37,10 +37,70 @@
         </ul>
   	</nav>
 </header>
-<div id='top'>
-  {% for event in events %}
-  {% endfor %}
+<div id='main'>
+<div id='feature'>
+    <ul id="main_list">
+          {% for feature in features %}
+              <li>  
+                  <a href="https://www.nodanews.com/event/{{feature.id}}/{{feature.slug}}"  target="_blank" class="feature_headline"><p>{{feature.headline}}</p>
+                  <img src="https://nodastorage.s3.amazonaws.com/media/{{feature.image}}" class="feature_image">
+                  <p class='feature_lead'>{{feature.lead|linebreaksbr}}</p>
+                  <p class="feature_updated">Updated: {{feature.date_updated}}</p>
+                  </a>
+            </li>
+          {% endfor %}
+      </ul>
 </div>
-
+<div id="middle">
+      <ul id='middle_list'>
+            {% for recent_event in recent_events %}
+              <li>  
+                  <a href="https://www.nodanews.com/event/{{recent_event.id}}/{{recent_event.slug}}"  target="_blank" class="recent_event_headline"><p>{{recent_event.headline}}</p>
+                  <img src="https://nodastorage.s3.amazonaws.com/media/{{recent_event.image}}" class="recent_event_image">
+                  <p class='recent_event_lead'>{{recent_event.lead|linebreaksbr}}</p>                  
+                  <p class="recent_event_updated">Updated: {{recent_event.date_updated}}</p>
+                  </a>
+            </li>
+          {% endfor %}
+      </ul>
+</div>
+<div id="bottom">
+        <ul class='bottom_list'>
+            {% for past_event in past_events %}
+              <li>  
+                  <a href="https://www.nodanews.com/event/{{past_event.id}}/{{past_event.slug}}"  target="_blank" class="past_event_headline"><p>{{past_event.headline}}</p>
+                  <img src="https://nodastorage.s3.amazonaws.com/media/{{past_event.image}}" class="past_event_image">
+                  </a>
+            </li>
+          {% endfor %}
+      </ul>
+      <ul class='bottom_list'>
+        <li class="section_title">Commentary</li>
+        {% for blog in blogs %}
+          <a href="http://www.nodanews.com/blog/{{blog.id}}/{{blog.slug}}">  
+            <li><span class="blog_headline">{{blog.headline}}</span><br><span class="blog_posted">{{blog.date_posted}}</span></li>
+          </a>  
+          <hr>          
+        {% endfor %}
+       </ul> 
+      <ul class='bottom_list'>
+            <li class="section_title">In Other News</li>
+          {% for other_link in other_links %}
+            <li>
+               <a href="{{other_link.url}}" class="link" target="_blank">
+                 <p>{{other_link.title}}</a><br>
+                 <a href="http://www.nodanews.com/media_dir/{{other_link.media.id}}/{{other_link.media.slug}}" class="breaking_media" target="_blank">{{other_link.media.name}}</a><br>
+                 <a href="http://www.nodanews.com/journalist/{{other_link.journalist.id}}/{{other_link.journalist.slug}}" class="jouranlist" target="_blank">{{other_link.journalist.name}}</a></p>                  
+                  {% if other_link.imageQ %}
+                  <a href="{{other_link.url}}" target="_blank">
+                  <img src="https://nodastorage.s3.amazonaws.com/media/{{other_link.image}}" class="breaking_image">
+                  </a>
+              {% endif %}   
+           </li>          
+          {% endfor %}
+          </ul>        
+      </ul>
+</div>
+</div>
 </body>
 </html>

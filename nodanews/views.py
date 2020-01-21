@@ -16,12 +16,20 @@ def index(request):
 	return render (request, 'index.html')
 
 def indexUC(request):
-    events = Event.objects.all().order_by('-date_updated')[0:5]
-    blogs = Blog. objects.filter(event__id=1)
+    features = Event.objects.all().order_by('-date_updated')[0:1]
+    recent_events = Event.objects.all().order_by('-date_updated')[1:3]
+    past_events = Event.objects.all().order_by('-date_updated')[3:10]
+    blogs = Blog.objects.all().order_by('-date_posted')[0:10]
     other_links = Other_Link.objects.all().order_by('-posted')[0:15]    
-    return render (request, 'indexUC.html', {'events': events, 'blogs': blogs, 'other_links': other_links})
+    return render (request, 'indexUC.html', {'recent_events': recent_events, 'features': features, 'past_events': past_events, 'blogs': blogs, 'other_links': other_links})
 
-def blog(request, slug, blog_id):
+def event(request, event_id, slug):
+    event = get_object_or_404(Event, pk=event_id)
+    blogs = Blog.objects.filer(event__id = event_id)
+    report_links = Report_Link.objects.filter(event__id = event_id)
+    return render(request, 'event.html', {'event': event, 'blogs': blogs, 'report_links': report_links})
+
+def blog(request, blog_id, slug):
 	blog = get_object_or_404(Blog, pk=blog_id)
 	return render(request, 'blog.html', {'blog': blog})
 
