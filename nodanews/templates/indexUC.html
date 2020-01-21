@@ -89,11 +89,11 @@
             <li>
                <a href="{{other_link.url}}" class="link" target="_blank">
                  <p>{{other_link.title}}</a><br>
-                 <a href="http://www.nodanews.com/media_dir/{{other_link.media.id}}/{{other_link.media.slug}}" class="breaking_media" target="_blank">{{other_link.media.name}}</a><br>
-                 <a href="http://www.nodanews.com/journalist/{{other_link.journalist.id}}/{{other_link.journalist.slug}}" class="jouranlist" target="_blank">{{other_link.journalist.name}}</a></p>                  
+                 <a href="http://www.nodanews.com/media_dir/{{other_link.media.id}}/{{other_link.media.slug}}" class="media" target="_blank">{{other_link.media.name}}</a><br>
+                 <a href="http://www.nodanews.com/journalist/{{other_link.journalist.id}}/{{other_link.journalist.slug}}" class="journalist" target="_blank">{{other_link.journalist.name}}</a></p>                  
                   {% if other_link.imageQ %}
                   <a href="{{other_link.url}}" target="_blank">
-                  <img src="https://nodastorage.s3.amazonaws.com/media/{{other_link.image}}" class="breaking_image">
+                  <img src="https://nodastorage.s3.amazonaws.com/media/{{other_link.image}}" class="other_link_image">
                   </a>
               {% endif %}   
            </li>          
