@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Venue, Agency, Genre, Issue, Party, Level, Event, Politician, Local_Link, District, Category, Organization, Program, Bureaucrat, Story, Blog, Report_Link, Media_Org
+from .models import Venue, Agency, Genre, Author, Issue, Party, Level, Event, Politician, Local_Link, District, Category, Organization, Program, Bureaucrat, Story, Blog, Report_Link, Media_Org
 ##NodaSF###
 
     
@@ -19,6 +19,7 @@ class BureaucratAdmin(admin.ModelAdmin):
     list_display = ['last_name','first_name', 'organization',]    
 
 admin.site.register(Story)
+admin.site.register(Author)
 admin.site.register(Venue, VenueAdmin)
 admin.site.register(Agency, AgencyAdmin)
 admin.site.register(Genre)

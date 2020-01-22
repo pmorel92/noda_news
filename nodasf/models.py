@@ -2,6 +2,13 @@ from django.db import models
 from django.db.models.aggregates import Count
 from datetime import datetime
 
+class Author(models.Model):
+    name = models.CharField(max_length=100, default='name here')
+    image = models.ImageField(upload_to='media/stock', default='')    
+    def __str__(self):
+        return self.name
+    class Meta:
+        ordering = ('name',)
 
 class Category(models.Model):
     name = models.CharField(max_length=100, default='')
@@ -266,7 +273,12 @@ class Story(models.Model):
         blank=True,)
     program = models.ManyToManyField(
         'Program',
-        blank=True)        
+        blank=True)
+    author = models.ForeignKey(
+        'Author',
+        on_delete=models.CASCADE,
+        default=1,
+        )    
     slug = models.SlugField(max_length=100, default=' ')
     
     def __str__(self):

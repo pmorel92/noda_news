@@ -10,8 +10,15 @@ class Theme(models.Model):
     
     class Meta:
         ordering = ('name',)
-
-
+        
+class Author(models.Model):
+    name = models.CharField(max_length=100, default='name here')
+    image = models.ImageField(upload_to='media/stock', default='')    
+    def __str__(self):
+        return self.name
+    class Meta:
+        ordering = ('name',)        
+        
 class Event(models.Model):
     headline = models.CharField(max_length=150, default=' ')
     lead = models.TextField()
@@ -25,6 +32,11 @@ class Event(models.Model):
     theme = models.ForeignKey(
         'Theme',
         on_delete=models.CASCADE)
+    author = models.ForeignKey(
+        'Author',
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True)    
     slug = models.SlugField(max_length=100, default=' ')
     
     def __str__(self):
