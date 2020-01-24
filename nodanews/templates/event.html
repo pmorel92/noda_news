@@ -55,14 +55,7 @@
 	<iframe class="video_embed" width="420" height="236" src="{{event.video}}" frameborder="0" allowfullscreen></iframe>
 	{% endif %}
 <p id="text">{{event.body|linebreaksbr}}</p>
-<div id='related'>
-  <ul class='link_list'>
-    <li class='section_title'>Related: </li>
-    {% for related in event.relateds.all %}
-    <a href='http://www.nodanews.com/event/{{related.id}}/{{relared.slug}}' target="_blank" style="text-decoration: none;color: black" class="link"  ><li class='related_links'>{{related.headline}}</li></a>
-    {% endfor %}
-    </ul>
-</div>
+
 <div id="bottom">
   	<ul class="link_list">	
   	  <li class='section_title'>Reports</li>	

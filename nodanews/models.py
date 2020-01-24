@@ -45,10 +45,6 @@ class Event(models.Model):
         on_delete=models.CASCADE,
         null=True,
         blank=True)
-    related = models.ManyToManyField(
-        'Event',
-        blank=True,
-        related_name='relateds')        
     slug = models.SlugField(max_length=100, default=' ')
     
     def __str__(self):
