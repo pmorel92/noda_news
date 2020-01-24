@@ -49,8 +49,40 @@
 <div id="main_image">
 <img src="https://nodastorage.s3.amazonaws.com/media/{{event.image}}" class="image" alt=""/>
 </div>
-<p id="text">{{blog.text|linebreaksbr}}</p>
-
+	{% if event.videoQ %}
+	<iframe class="video_embed" width="420" height="236" src="{{event.video}}" frameborder="0" allowfullscreen></iframe>
+	{% endif %}
+<p id="text">{{event.text|linebreaksbr}}</p>
+<div id='related'>
+  <ul class='link_list'>
+    <li class='section_title'>Related: </li>
+    {% for related in event.relateds.all %}
+    <a href='http://www.nodanews.com/event/{{related.id}}/{{relared.slug}}' target="_blank" style="text-decoration: none;color: black" class="link"  ><li class='related_links'>{{related.headline}}</li></a>
+    {% endfor %}
+    </ul>
+</div>
+<div id="bottom">
+  	<ul class="link_list">	
+  	  <li class='section_title'>Reports</li>	
+	{% for report_link in report_links %}
+		<li class="link">
+			<a href="{{report_link.url}}" style="text-decoration: none;color: black" target="_blank">
+				<h3>{{report_link.title}}</h3></a><a href="http://www.nodanews.com/media_dir/{{report_link.media.id}}/{{report_link.media.slug}}" style="text-decoration: none;color: orange" target="_blank"><h3 class='media_org'>-- {{report_link.media.name}}</h3>
+				</a>
+		</li>
+		{% endfor %}
+	</ul>	
+	<ul class="link_list">
+	  <li class='section_title'>Comentary</li>	
+	{% for blog in blogs %}
+		<li class="blog">
+			<a href="http://www.nodanews.com/blog/{{blog.id}}/{{blog.slug}}" style="text-decoration: none;color: black" class="link" target="_blank">
+				<h3>{{blog.headline}}</a>
+		</li>
+		{% endfor %}
+	</ul>	  
+  
+</div>
 <script id="dsq-count-scr" src="//nodanews.disqus.com/count.js" async></script>
 
 <div id="disqus_thread"></div>
