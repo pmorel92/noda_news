@@ -6,7 +6,7 @@ from . import views
 urlpatterns = [
 	path('', views.index, name='index'),
 	path('test/', views.indexUC, name='work in progress'),
-	path('event/<int:id>/<slug:slug>/', views.event, name="event view"),
+	path('event/<int:event_id>/<slug:slug>/', views.event, name="event view"),
 	
 ###############Archive##########	
 
