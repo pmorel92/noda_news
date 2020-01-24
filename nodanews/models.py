@@ -11,6 +11,14 @@ class Theme(models.Model):
     class Meta:
         ordering = ('name',)
         
+class Category(models.Model):
+    name = models.CharField(max_length=100, default=' ')
+    
+    def __str__(self):
+        return self.name
+    
+    class Meta:
+        ordering = ('name',)        
 class Author(models.Model):
     name = models.CharField(max_length=100, default='name here')
     image = models.ImageField(upload_to='media/stock', default='')    
@@ -91,7 +99,12 @@ class Other_Link(models.Model):
         'Media_Org',
         on_delete=models.CASCADE,)
     imageQ = models.BooleanField(default=False)
-    image = models.ImageField(upload_to='media/temp', default='', blank=True)        
+    image = models.ImageField(upload_to='media/temp', default='', blank=True)
+    category = models.ForeignKey(
+        'Category',
+        on_delete=models.CASCADE,
+        blank=True,
+        null=True)
 
     def __str__(self):
         return "{}/{}".format(self.title, self.media.name)  
