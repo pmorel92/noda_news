@@ -51,11 +51,12 @@
 <div id="main_image">
 <img src="https://nodastorage.s3.amazonaws.com/media/{{event.image}}" class="image" alt=""/>
 </div>
+<div id="body">
 	{% if event.videoQ %}
 	<iframe class="video_embed" width="420" height="236" src="{{event.video}}" frameborder="0" allowfullscreen></iframe>
 	{% endif %}
 <p id="text">{{event.body|linebreaksbr}}</p>
-
+</div>
 <div id="bottom">
   	<ul class="link_list">	
   	  <li class='section_title'>Reports</li>	
