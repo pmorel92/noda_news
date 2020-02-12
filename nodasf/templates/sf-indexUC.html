@@ -2,27 +2,105 @@
 <html>
 <head>
 <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-109012884-1"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-109012884-2"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'UA-109012884-1');
+  gtag('config', 'UA-109012884-2');
 </script>
-	
 <meta charset="utf-8">
-<title>NodaSF Homepage</title>
+<title>NodaSF</title>
 {% load static %}
 <link rel="image_src" href="{% static 'NN-FB-Pro_pic.png' %}"/> 
-<link href="{% static 'css_style_sheets/nodasf.css' %}" rel="stylesheet" type="text/css">
-<link href="{% static 'css_style_sheets/navi.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'css_style_sheets/index_sf.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'css_style_sheets/nav_sf.css' %}" rel="stylesheet" type="text/css">
 <link href="{% static 'favicon.ico' %}" rel='shortcut icon'>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 </head>
+<body>
+      <header>
+  	    		<form method="get" action="https://www.google.com/search">
+			    <input type="hidden" name="sitesearch" value="sf.nodanews.com" />
+			    <input type="text" size="15" name="q" placeholder="Search" />
+			    <button type="submit"></button>
+		        </form>
+    <nav>
+      <a href="https://sf.nodanews.com/"><img src="{% static 'nodasf.png' %}" alt="" id="logo"></a>
+      <img src="{% static 'Hamburger_icon.svg.png' %}" id='burger'>
+      <ul id="nav-list">
+      <li class='nav-list-item'><a href="https://www.nodanews.com/sf/media-org-directory/">Media Org. Directory</a></li>
+      <li class='nav-list-item'><a href="https://www.nodanews.com/sf/venues/">Venues</a></li>
+      <li class='nav-list-item'><a href="https://www.nodanews.com/sf/politicians/">Politicians</a></li>
+      <li class='nav-list-item'><a href="https://www.nodanews.com/sf/agencies/">Gov. Agencies</a></li>
+      <li class='nav-list-item'><a href="https://www.nodanews.com/sf/organizations/">Local Organizations</a></li>
+      <li class='nav-list-item'><a href="https://www.nodanews.com/sf/about/">About Noda News</a></li>
+  	</ul>
+  	</nav>
+    </header>
+<div id="main">   
+    <div id="stf-section">
+      <h1 class="section-title">Stories We are Following</h1>    
+          <ul class="stf-list">
+            {% for stf in stfs %}
+            <li>
+              <a href="https://sf.nodanews.com/story/{{stf.id}}/{{stf.slug}}" class="anchor">
+                  <p class="stf-headline">{{stf.headline}}</p></a>
+                  <p class="updated">Updated: {{stf.date_updated}}</p>
+                  <img src="https://noda-sf-storage.s3.amazonaws.com/{{stf.image}}" class="stf_image">
+                  <p class="credit">Photo Credit: {{stf.credit}}</p>
 
-
-
-
-
+                  <p class="stf_update">{{stf.update|linebreaksbr}}</p>
+                  <a href="https://sf.nodanews.com/hub/{{stf.hub.id}}/{{stf.hub.slug}}" class="anchor"><p class="stf-hub">{{stf.hub.name}}</p></a>
+            </li>
+            <hr>
+            {% endfor %}
+          </ul>
+    </div>
+    <div id="event-section">
+        <a href='https://sf.nodanews.com/events/' class="section-title-event"><h1>Local Events</h1></a>
+        <ul class="event-list">
+            {% for event in events %}
+                <li class="event">
+                    <a href="https://sf.nodanews.com/event/{{event.id}}/{{event.slug}}" class='anchor'>
+                        <p class="event-name">{{event.name}}</p></a>
+                        <p class='event-date'>{{event.date}}</p>
+                        <p class='event-genre'>{{event.genre.name}}</p>
+                        <a href='https://sf.nodanews.com/venue/{{event.venue.id}}/{{event.venue.slug}}' class='anchor'><p class='event-venue'>Venue: {{event.venue}}</p></a>
+                  {% if event.free %}
+                         <p class="free">FREE</p>
+                  {% endif %}         
+                  {% if event.imageQ %}
+                  <img src="https://noda-sf-storage.s3.amazonaws.com/{{event.image}}" class="event-image">
+                  {% endif %}
+                    
+                </li>
+            <hr>
+            {% endfor %}
+            
+        </ul>
+    </div>
+    
+    <div id='local-link-section'>
+            <h1 class="section-title">News From Local Outlets</h1>        
+          <ul class='local-link-list'>
+          {% for local_link in local_links %}
+            <li class='local-link'>
+               <a href="{{local_link.url}}" class="anchor" target="_blank">
+                 <p class="local-link-headline">{{local_link.headline}}</p></a>
+                 <a href="https://sf.nodanews.com/journalist/{{local_link.journalist.id}}/{{local_link.journalist.slug}}" class="journalist" target="_blank">{{local_link.journalist.first_name}} {{local_link.journalist.last_name}}</a>
+                 <br><a href="https://sf.nodanews.com/media-org-directory/{{local_link.media.id}}/{{local_link.media.slug}}" class="local-media">{{local_link.media.name}}</a>
+                  {% if local_link.imageQ %}
+                  <a href="{{local_link.url}}" target="_blank">
+                  <img src="https://noda-sf-storage.s3.amazonaws.com/{{local_link.image}}" class="local_image">
+                  </a>
+              {% endif %}   
+           </li>      
+           <hr>
+          {% endfor %}
+          </ul>
+        </div>
+</div>        
+</body>
 </html>
