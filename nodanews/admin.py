@@ -6,7 +6,7 @@ class EventAdmin(admin.ModelAdmin):
 
 
 class Other_LinkAdmin(admin.ModelAdmin):
-    list_display = ['category', 'media_org', 'posted',]
+    list_display = ['category', 'media', 'posted',]
     
 class Report_LinkAdmin(admin.ModelAdmin):
     list_display = ['media', 'event', 'title']

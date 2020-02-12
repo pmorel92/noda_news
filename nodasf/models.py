@@ -277,7 +277,7 @@ class Story(models.Model):
     author = models.ForeignKey(
         'Author',
         on_delete=models.CASCADE,
-        default=1,
+        blank=True,
         )    
     slug = models.SlugField(max_length=100, default=' ')
     

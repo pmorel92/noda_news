@@ -71,8 +71,9 @@ def archives(request):
     issues = PoliticalIssue.objects.all().order_by("-id")
     nodes_by_dir = {
         n: Node.objects.filter(node_direc__id = n.id).order_by('-date_posted') for n in node_dirs
-    }    
-    return render(request, 'Archives/archives.html', {'node_dirs': node_dirs, 'indepths': indepths, 'issues': issues, 'nodes_by_dir': nodes_by_dir})
+    }
+    events = Event.objects.all().order_by('-date_created')
+    return render(request, 'Archives/archives.html', {'node_dirs': node_dirs, 'indepths': indepths, 'issues': issues, 'nodes_by_dir': nodes_by_dir, 'events': events})
 
 
 

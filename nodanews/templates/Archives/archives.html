@@ -43,6 +43,12 @@
 
 <div id="main">
     <ul class="list">
+	{% for event in events %}
+			<a href="http://www.nodanews.com/event/{{event.id}}/{{event.slug}}" style="text-decoration: none; color: black"><li class="title">{{event.name}}</li></a>
+					<hr>
+	{% endfor %}
+			</ul>
+    <ul class="list">
 	{% for node_dir in node_dirs %}
 			<a href="http://www.nodanews.com/node-dir/{{node_dir.id}}/{{node_dir.slug}}" style="text-decoration: none; color: black"><li class="title">{{node_dir.name}}</li></a>
 				<ul class="list">

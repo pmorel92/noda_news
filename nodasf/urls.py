@@ -6,5 +6,5 @@ from . import views
 #NodaSF
 urlpatterns = [
 	path('', views.index, name='index'),
-	path('test', views.indexUC, name='index in training')
+	path('test/', views.indexUC, name='index in training')
 ]
