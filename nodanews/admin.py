@@ -1,15 +1,25 @@
 from django.contrib import admin
-from .models import Event, Theme, Author, Other_Link, Report_Link, Media_Org, Blog, Node, Media_Org, Link, Perspective, Node_Dir, Region, Journalist, Political_Lean, Media_Character, About, Topic_Link, PoliticalBiasNews, Blog, Analysis, AnalLink, AnalPerspective, PoliticalIssue, STF, STF_Hub, STF_Link, Feature, Feature_Link 
+from .models import Event, Theme, Category, Author, Other_Link, Report_Link, Media_Org, Blog, Node, Media_Org, Link, Perspective, Node_Dir, Region, Journalist, Political_Lean, Media_Character, About, Topic_Link, PoliticalBiasNews, Blog, Analysis, AnalLink, AnalPerspective, PoliticalIssue, STF, STF_Hub, STF_Link, Feature, Feature_Link 
+
+class EventAdmin(admin.ModelAdmin):
+    list_display = ['headline', 'theme']
 
 
+class Other_LinkAdmin(admin.ModelAdmin):
+    list_display = ['category', 'media_org', 'posted',]
+    
+class Report_LinkAdmin(admin.ModelAdmin):
+    list_display = ['media', 'event', 'title']
+
+admin.site.register(Category)
 admin.site.register(Author)
-admin.site.register(Event)
+admin.site.register(Event, EventAdmin)
 admin.site.register(Theme)
 admin.site.register(Media_Org)
 admin.site.register(Blog)
-admin.site.register(Report_Link)
+admin.site.register(Report_Link, Report_LinkAdmin)
 admin.site.register(About)
-admin.site.register(Other_Link)
+admin.site.register(Other_Link, Other_LinkAdmin)
 
 ####Archives###
     

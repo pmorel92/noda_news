@@ -64,7 +64,7 @@
 	{% for report_link in report_links %}
 		<li class="link">
 			<a href="{{report_link.url}}" style="text-decoration: none;color: black" target="_blank">
-				<h3>{{report_link.title}}</h3></a><a href="http://www.nodanews.com/media_dir/{{report_link.media.id}}/{{report_link.media.slug}}" style="text-decoration: none;color: orange" target="_blank"><h3 class='media_org'>-- {{report_link.media.name}}</h3>
+				<p>{{report_link.title}}</p></a><a href="http://www.nodanews.com/media_dir/{{report_link.media.id}}/{{report_link.media.slug}}" style="text-decoration: none;color: orange" target="_blank"><p class='media_org'>-- {{report_link.media.name}}</p>
 				</a>
 		</li>
 		{% endfor %}
@@ -74,7 +74,7 @@
 	{% for blog in blogs %}
 		<li class="blog">
 			<a href="http://www.nodanews.com/blog/{{blog.id}}/{{blog.slug}}" style="text-decoration: none;color: black" class="link" target="_blank">
-				<h3>{{blog.headline}}</h3></a>
+				<p>{{blog.headline}}</p></a>
 		</li>
 		{% endfor %}
 	</ul>	  
