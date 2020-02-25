@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Event, Theme, Category, Author, Other_Link, Report_Link, Media_Org, Blog, Node, Media_Org, Link, Perspective, Node_Dir, Region, Journalist, Political_Lean, Media_Character, About, Topic_Link, PoliticalBiasNews, Blog, Analysis, AnalLink, AnalPerspective, PoliticalIssue, STF, STF_Hub, STF_Link, Feature, Feature_Link 
+from .models import Event, Theme, Category, Author, Other_Link, Array, Sequence, Element, Report_Link, Media_Org, Blog, Node, Media_Org, Link, Perspective, Node_Dir, Region, Journalist, Political_Lean, Media_Character, About, Topic_Link, PoliticalBiasNews, Blog, Analysis, AnalLink, AnalPerspective, PoliticalIssue, STF, STF_Hub, STF_Link, Feature, Feature_Link 
 
 class EventAdmin(admin.ModelAdmin):
     list_display = ['headline', 'theme']
@@ -20,6 +20,9 @@ admin.site.register(Blog)
 admin.site.register(Report_Link, Report_LinkAdmin)
 admin.site.register(About)
 admin.site.register(Other_Link, Other_LinkAdmin)
+admin.site.register(Array)
+admin.site.register(Element)
+admin.site.register(Sequence)
 
 ####Archives###
     

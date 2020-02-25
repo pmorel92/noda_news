@@ -26,7 +26,50 @@ class Author(models.Model):
         return self.name
     class Meta:
         ordering = ('name',)        
+
+class Sequence(models.Model):
+    headline = models.CharField(max_length=150, default=' ')
+    lead = models.TextField()
+    body = models.TextField()    
+    date_created = models.DateField(auto_now_add=True)
+    date_updated = models.DateTimeField(auto_now=True)    
+    image = models.ImageField(upload_to='media/stock', default='')
+
+    class Meta:
+        ordering = ('-date_updated',)
+
+    def __str__(self):
+        return self.headline
+
+class Element(models.Model):
+    headline = models.CharField(max_length=150, default=' ')
+    body = models.TextField()    
+    date_created = models.DateField(auto_now_add=True)
+    date_updated = models.DateTimeField(auto_now=True)    
+    videoQ = models.BooleanField(default=False)
+    video = models.CharField(max_length=500, default='', blank=True) 
+    imageQ = models.BooleanField(default=False)
+    image = models.ImageField(upload_to='media/stock', default='')
+    sequence = models.ForeignKey(
+        'Sequence',
+        on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return "{}/{}".format(self.headline, self.sequence)
         
+class Array(models.Model):
+    title = models.CharField(max_length=150, default= ' ')
+    description = models.TextField()
+    date_created = models.DateField(auto_now_add=True)
+    date_updated = models.DateTimeField(auto_now=True)     
+    sequence = models.ForeignKey(
+        'Sequence',
+        on_delete=models.CASCADE)
+
+    def __str__(self):
+        return "{}/{}".format(self.title, self.sequence)
+
+    
 class Event(models.Model):
     headline = models.CharField(max_length=150, default=' ')
     lead = models.TextField()
@@ -75,18 +118,27 @@ class Report_Link(models.Model):
     posted = models.DateTimeField(auto_now=True, blank=True)    
     media = models.ForeignKey(
         'Media_Org',
-        on_delete=models.CASCADE,)
+        on_delete=models.CASCADE,
+        blank=True)
     event = models.ForeignKey(
         'Event',
-        on_delete=models.CASCADE,)
+        on_delete=models.CASCADE,
+        blank=True,
+        null=True)
+    array = models.ForeignKey(
+        'Array',
+        on_delete=models.CASCADE,
+        blank=True,
+        null=True)    
     imageQ = models.BooleanField(default=False)
     image = models.ImageField(upload_to='media/temp', default='', blank=True)        
 
     def __str__(self):
-        return "{}/{}".format(self.title, self.event)  
+        return "{}/{}/{}".format(self.title, self.event, self.array)  
         
     class Meta:
         ordering = ('-posted',)
+        
 class Other_Link(models.Model):
     url = models.CharField(max_length=300, default='', blank=True)
     title = models.CharField(max_length=150, default='', blank=True)
