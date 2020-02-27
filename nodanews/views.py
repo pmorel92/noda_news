@@ -16,9 +16,9 @@ def index(request):
 	return render (request, 'index.html')
 
 def indexUC(request):
-    features = Event.objects.all().order_by('-date_updated')[0:1]
-    recent_events = Event.objects.all().order_by('-date_updated')[1:3]
-    past_events = Event.objects.all().order_by('-date_updated')[3:10]
+    features = Sequence.objects.all().order_by('-date_updated')[0:1]
+    recent_events = Event.objects.all().order_by('-date_updated')[0:5]
+    past_events = Event.objects.all().order_by('-date_updated')[5:10]
     blogs = Blog.objects.all().order_by('-date_posted')[0:10]
     other_links = Other_Link.objects.all().order_by('-posted')[0:15]    
     return render (request, 'indexUC.html', {'recent_events': recent_events, 'features': features, 'past_events': past_events, 'blogs': blogs, 'other_links': other_links})
@@ -34,6 +34,14 @@ def blog(request, blog_id, slug):
 	return render(request, 'blog.html', {'blog': blog})
 
 
+def sequence(request, sequence_id):
+    sequence = get_object_or_404(Sequence, pk=sequence_id)
+    elements = Element.objects.filter(sequence__id = sequence_id ).order_by('-date_updated')
+    arrays = Array.objects.filter( sequence__id = sequence_id )
+    array_links = {
+		p: Report_Link.objects.filter(array__id = p.id) for p in arrays
+	}
+    return render(request, 'sequence.html', {'sequence': sequence, 'arrays': array_links, 'elements': elements})
 ############Archives#################
 
 

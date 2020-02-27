@@ -1,0 +1,104 @@
+<!doctype html>
+<html>
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-109012884-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-109012884-1');
+</script>
+	
+<meta charset="utf-8">
+<title>{{sequence.headline}}</title>
+{% load static  %}
+<link rel="image_src" href="{% static 'NN-FB-Pro_pic.png' %}"/> 
+<link href="{% static 'css_style_sheets/sequence.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'css_style_sheets/navi.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'favicon.ico' %}" rel='shortcut icon'>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+
+<body>
+<div id="fb-root"></div>
+
+  <header>
+  	    		<form method="get" action="https://www.google.com/search">
+			<input type="hidden" name="sitesearch" value="www.nodanews.com" />
+			<input type="text" size="15" name="q" placeholder="Search" />
+			<button type="submit"></button>
+		</form>
+    <nav>
+      <a href="http://www.nodanews.com"><img src="{% static 'images/elements/nn_logo_horizontal.svg' %}" alt="" id="logo"></a>
+          <img src="{% static 'images/elements/Hamburger_icon.svg.png' %}" alt="" id="burger">
+        <ul id='nav-list'>
+          <li class='nav-list-item'> <a href="http://www.nodanews.com/media-org-directory">Media Org. Directory</a></li>
+          <li class='nav-list-item'><a href="http://www.nodanews.com/archives">Archives</a></li> 
+          <li class='nav-list-item'><a href="http://www.nodanews.com/about">About Noda News</a></li>
+        </ul>
+
+  	</nav>
+  </header>
+
+<div id="main">
+	<div id="top">
+<h1 id="headline">{{sequence.headline}}</h1>
+	<h3 class="updated">Updated: {{sequence.date_updated}}</h3>
+<div id="main_image">
+<img src="https://nodastorage.s3.amazonaws.com/media/{{sequence.image}}" class="main_image" alt=""/>
+</div>
+	<p class='credit'>Credit: {{sequence.credit}}</p>
+	<p id='body'>{{sequence.body}}</p>
+</div>
+<div id='middle'>
+    <div id="element-thread">  
+	  {% for element in elements %}
+	    <div class='element'>
+	      <p class='element-headline'>{{element.headline}}</p>
+	       <p class='updated'>{{element.date_updated}}</p>
+		     {% if element.imageQ %}
+            <img src="https://nodastorage.s3.amazonaws.com/media/{element.image}}" class="element_image">	  
+    	    {% endif %}
+	      <p class='element-body'>{{element.body}}</p>
+	       {% if element.videoQ %}
+          	<iframe class="element_video" width="420" height="236" src="{{element.video}}" frameborder="0" allowfullscreen></iframe>	  
+	       {% endif %}
+	    </div>
+	  {% endfor %}
+  </div>
+</div>
+  <div id="list-thread">
+    {% for array, links in arrays.items %}
+    <div class='array'>
+      <p class='title'>{{array.title}}</p>
+      <p class='updated'>{{array.date_updated}}</p>
+      <p class='array-description'>{{array.description}}</p>
+        <ul class='link_list'>
+          {% for link in links %}
+  					<li class="link"><a href="{{link.url}}" style="text-decoration: none;color: black" target="_blank"><p>{{link.title}}</a><a href="http://www.nodanews.com/media_dir/{{link.media.id}}/{{link.media.slug}}" style="text-decoration: none;color: orange" target="_blank"> -- {{link.media.name}}</p></a></li>          
+          {% endfor %}  
+        </ul>
+    </div>
+    {% endfor %}
+  
+  </div>
+</div>	
+<script id="dsq-count-scr" src="//nodanews.disqus.com/count.js" async></script>
+<div id="disqus_thread"></div>
+<script>
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://nodanews.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>    
+</body>
+</html>
+
+

@@ -34,7 +34,8 @@ class Sequence(models.Model):
     date_created = models.DateField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)    
     image = models.ImageField(upload_to='media/stock', default='')
-
+    credit = models.CharField(max_length=150, default=' ')
+    
     class Meta:
         ordering = ('-date_updated',)
 
@@ -50,6 +51,7 @@ class Element(models.Model):
     video = models.CharField(max_length=500, default='', blank=True) 
     imageQ = models.BooleanField(default=False)
     image = models.ImageField(upload_to='media/stock', default='')
+    credit = models.CharField(max_length=150, default=' ')
     sequence = models.ForeignKey(
         'Sequence',
         on_delete=models.CASCADE)

@@ -42,7 +42,7 @@
     <ul id="main_list">
           {% for feature in features %}
               <li>  
-                  <a href="https://www.nodanews.com/event/{{feature.id}}/{{feature.slug}}"  target="_blank" class="feature_headline"><p>{{feature.headline}}</p>
+                  <a href="https://www.nodanews.com/sequence/{{feature.id}}/{{feature.slug}}"  target="_blank" class="feature_headline"><p>{{feature.headline}}</p>
                   <img src="https://nodastorage.s3.amazonaws.com/media/{{feature.image}}" class="feature_image"></a>
                   <p class='feature_lead'>{{feature.lead|linebreaksbr}}</p>
                   <p class="feature_updated">Updated: {{feature.date_updated}}</p>
