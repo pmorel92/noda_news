@@ -56,7 +56,7 @@
     <div id="element-thread">  
 	  {% for element in elements %}
 	    <div class='element'>
-	      <p class='element-headline'>{{element.headline}}</p>
+	      <a href='https://www.nodanews.com/element/{{element.id}}/{{element.slug}}' class='element_link'><p class='element-headline'>{{element.headline}}</p></a>
 	       <p class='list_updated'>Updated: {{element.date_updated}}</p>
 		     {% if element.imageQ %}
             <img src="https://nodastorage.s3.amazonaws.com/media/{{element.image}}" class="element_image">	  

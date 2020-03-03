@@ -34,6 +34,10 @@ def blog(request, blog_id, slug):
 	blog = get_object_or_404(Blog, pk=blog_id)
 	return render(request, 'blog.html', {'blog': blog})
 
+def element(request, element_id, slug):
+	element = get_object_or_404(Element, pk=blog_id)
+	return render(request, 'element.html', {'element': element})
+
 
 def sequence(request, sequence_id, slug):
     sequence = get_object_or_404(Sequence, pk=sequence_id)

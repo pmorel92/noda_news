@@ -56,6 +56,7 @@ class Element(models.Model):
     sequence = models.ForeignKey(
         'Sequence',
         on_delete=models.CASCADE)
+    slug = models.SlugField(max_length=100, default=' slug here')    
     
     def __str__(self):
         return "{}/{}".format(self.headline, self.sequence)
