@@ -35,7 +35,7 @@ def blog(request, blog_id, slug):
 	return render(request, 'blog.html', {'blog': blog})
 
 
-def sequence(request, sequence_id):
+def sequence(request, sequence_id, slug):
     sequence = get_object_or_404(Sequence, pk=sequence_id)
     elements = Element.objects.filter(sequence__id = sequence_id ).order_by('-date_updated')
     arrays = Array.objects.filter( sequence__id = sequence_id )
