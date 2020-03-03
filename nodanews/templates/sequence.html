@@ -59,7 +59,7 @@
 	      <p class='element-headline'>{{element.headline}}</p>
 	       <p class='updated'>{{element.date_updated}}</p>
 		     {% if element.imageQ %}
-            <img src="https://nodastorage.s3.amazonaws.com/media/{element.image}}" class="element_image">	  
+            <img src="https://nodastorage.s3.amazonaws.com/media/{{element.image}}" class="element_image">	  
     	    {% endif %}
 	      <p class='element-body'>{{element.body}}</p>
 	       {% if element.videoQ %}
