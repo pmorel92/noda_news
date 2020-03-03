@@ -63,6 +63,17 @@
             </li>
           {% endfor %}
       </ul>
+      <ul id='sequences'>
+        {% for sequnce in sequences %}
+        <li>
+                  <a href="https://www.nodanews.com/sequence/{{sequence.id}}/{{sequence.slug}}"  target="_blank" class="sequence_headline"><p>{{sequence.headline}}</p>
+                  <img src="https://nodastorage.s3.amazonaws.com/media/{{sequence.image}}" class="sequence_image"></a>
+                  <p class='sequence_lead'>{{sequence.lead|linebreaksbr}}</p>
+                  <p class="sequence_updated">Updated: {{sequence.date_updated}}</p>
+        </li>
+        {% endfor %}
+        
+      </ul>
 </div>
 <div id="bottom">
         <ul class='bottom_list'>

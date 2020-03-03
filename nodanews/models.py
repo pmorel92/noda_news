@@ -35,6 +35,7 @@ class Sequence(models.Model):
     date_updated = models.DateTimeField(auto_now=True)    
     image = models.ImageField(upload_to='media/stock', default='')
     credit = models.CharField(max_length=150, default=' ')
+    slug = models.SlugField(max_length=100, default='slug here')    
     
     class Meta:
         ordering = ('-date_updated',)

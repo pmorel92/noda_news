@@ -17,11 +17,12 @@ def index(request):
 
 def indexUC(request):
     features = Sequence.objects.all().order_by('-date_updated')[0:1]
+    sequences = Sequence.objects.all().order_by('-date_updated')[1:3]    
     recent_events = Event.objects.all().order_by('-date_updated')[0:5]
     past_events = Event.objects.all().order_by('-date_updated')[5:10]
     blogs = Blog.objects.all().order_by('-date_posted')[0:10]
     other_links = Other_Link.objects.all().order_by('-posted')[0:15]    
-    return render (request, 'indexUC.html', {'recent_events': recent_events, 'features': features, 'past_events': past_events, 'blogs': blogs, 'other_links': other_links})
+    return render (request, 'indexUC.html', {'recent_events': recent_events, 'features': features, 'past_events': past_events, 'blogs': blogs, 'other_links': other_links, 'sequences': sequences})
 
 def event(request, event_id, slug):
     event = get_object_or_404(Event, pk=event_id)
