@@ -35,7 +35,7 @@ def blog(request, blog_id, slug):
 	return render(request, 'blog.html', {'blog': blog})
 
 def element(request, element_id, slug):
-	element = get_object_or_404(Element, pk=blog_id)
+	element = get_object_or_404(Element, pk=element_id)
 	return render(request, 'element.html', {'element': element})
 
 

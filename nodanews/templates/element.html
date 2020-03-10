@@ -12,10 +12,10 @@
 </script>
 	
 <meta charset="utf-8">
-<title>{{blog.headline}}</title>
+<title>{{element.headline}}</title>
 {% load static  %}
 <link rel="image_src" href="{% static 'NN-FB-Pro_pic.png' %}"/> 
-<link href="{% static 'css_style_sheets/blog.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'css_style_sheets/element.css' %}" rel="stylesheet" type="text/css">
 <link href="{% static 'css_style_sheets/nav.css' %}" rel="stylesheet" type="text/css">
 <link href="{% static 'favicon.ico' %}" rel='shortcut icon'>
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -43,10 +43,10 @@
   </header>
 
 <div id="central-column">
-<h1 id="headline">{{blog.headline}}</h1>
-	<h3 id="posted">Posted: {{blog.date_posted}}</h3>
+<h1 id="headline">{{element.headline}}</h1>
+	<h3 id="posted">Posted: {{element.date_posted}}</h3>
 
-<p id="text">{{blog.text|linebreaksbr}}</p>
+<p id="text">{{element.body|linebreaksbr}}</p>
 
 <script id="dsq-count-scr" src="//nodanews.disqus.com/count.js" async></script>
 
