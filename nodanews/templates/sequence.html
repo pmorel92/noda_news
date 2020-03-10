@@ -61,7 +61,7 @@
 		     {% if element.imageQ %}
             <img src="https://nodastorage.s3.amazonaws.com/media/{{element.image}}" class="element_image">	  
     	    {% endif %}
-	      <p class='element-body'>{{element.body}}</p>
+	      <p class='element-body'>{{element.body|linebreaksbr}}</p>
 	       {% if element.videoQ %}
           	<iframe class="element_video" width="420" height="236" src="{{element.video}}" frameborder="0" allowfullscreen></iframe>	  
 	       {% endif %}
