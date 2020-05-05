@@ -7,8 +7,7 @@ urlpatterns = [
 	path('', views.index, name='index'),
 	path('test/', views.indexUC, name='work in progress'),
 	path('event/<int:event_id>/<slug:slug>/', views.event, name="event view"),
-	path('sequence/<int:sequence_id>/<slug:slug>/', views.sequence, name="sequence view"),	
-	path('element/<int:element_id>/<slug:slug>/', views.element, name="element view"),	
+
 ###############Archive##########	
 
 	path('about/', views.about, name='about'),

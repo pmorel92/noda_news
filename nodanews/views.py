@@ -5,7 +5,7 @@ from django.template.defaulttags import register
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.urls import reverse
 from django.db.models import F, Q
-from .models import Event, Theme, Report_Link, Other_Link, Blog, Node, Media_Org, Perspective, Array, Sequence, Element, Link, Node_Dir, Region, Journalist, About, Topic_Link, PoliticalBiasNews, Blog, Analysis, AnalLink, AnalPerspective, PoliticalIssue, STF, STF_Hub, STF_Link, Feature, Feature_Link
+from .models import Event, Theme, Report_Link, Other_Link, Blog, Node, Media_Org, Perspective, Link, Node_Dir, Region, Journalist, About, Topic_Link, PoliticalBiasNews, Blog, Analysis, AnalLink, AnalPerspective, PoliticalIssue, STF, STF_Hub, STF_Link, Feature, Feature_Link
 
 @register.filter
 def get_item(dictionary, key):
@@ -16,13 +16,11 @@ def index(request):
 	return render (request, 'index.html')
 
 def indexUC(request):
-    features = Sequence.objects.all().order_by('-date_updated')[0:1]
-    sequences = Sequence.objects.all().order_by('-date_updated')[1:3]    
     recent_events = Event.objects.all().order_by('-date_updated')[0:5]
     past_events = Event.objects.all().order_by('-date_updated')[5:10]
     blogs = Blog.objects.all().order_by('-date_posted')[0:10]
     other_links = Other_Link.objects.all().order_by('-posted')[0:15]    
-    return render (request, 'indexUC.html', {'recent_events': recent_events, 'features': features, 'past_events': past_events, 'blogs': blogs, 'other_links': other_links, 'sequences': sequences})
+    return render (request, 'indexUC.html', {'recent_events': recent_events, 'past_events': past_events, 'blogs': blogs, 'other_links': other_links})
 
 def event(request, event_id, slug):
     event = get_object_or_404(Event, pk=event_id)
@@ -34,19 +32,7 @@ def blog(request, blog_id, slug):
 	blog = get_object_or_404(Blog, pk=blog_id)
 	return render(request, 'blog.html', {'blog': blog})
 
-def element(request, element_id, slug):
-	element = get_object_or_404(Element, pk=element_id)
-	return render(request, 'element.html', {'element': element})
 
-
-def sequence(request, sequence_id, slug):
-    sequence = get_object_or_404(Sequence, pk=sequence_id)
-    elements = Element.objects.filter(sequence__id = sequence_id ).order_by('-date_updated')
-    arrays = Array.objects.filter( sequence__id = sequence_id )
-    array_links = {
-		p: Report_Link.objects.filter(array__id = p.id) for p in arrays
-	}
-    return render(request, 'sequence.html', {'sequence': sequence, 'arrays': array_links, 'elements': elements})
 ############Archives#################
 
 

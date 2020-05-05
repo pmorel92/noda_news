@@ -27,52 +27,6 @@ class Author(models.Model):
     class Meta:
         ordering = ('name',)        
 
-class Sequence(models.Model):
-    headline = models.CharField(max_length=150, default=' ')
-    lead = models.TextField()
-    body = models.TextField()    
-    date_created = models.DateField(auto_now_add=True)
-    date_updated = models.DateTimeField(auto_now=True)    
-    image = models.ImageField(upload_to='media/stock', default='')
-    credit = models.CharField(max_length=150, default=' ')
-    slug = models.SlugField(max_length=100, default='slug here')    
-    
-    class Meta:
-        ordering = ('-date_updated',)
-
-    def __str__(self):
-        return self.headline
-
-class Element(models.Model):
-    headline = models.CharField(max_length=150, default=' ')
-    body = models.TextField()    
-    date_created = models.DateField(auto_now_add=True)
-    date_updated = models.DateTimeField(auto_now=True)    
-    videoQ = models.BooleanField(default=False)
-    video = models.CharField(max_length=500, default='', blank=True) 
-    imageQ = models.BooleanField(default=False)
-    image = models.ImageField(upload_to='media/stock', default='')
-    credit = models.CharField(max_length=150, default=' ')
-    sequence = models.ForeignKey(
-        'Sequence',
-        on_delete=models.CASCADE)
-    slug = models.SlugField(max_length=100, default=' slug here')    
-    
-    def __str__(self):
-        return "{}/{}".format(self.headline, self.sequence)
-        
-class Array(models.Model):
-    title = models.CharField(max_length=150, default= ' ')
-    description = models.TextField()
-    date_created = models.DateField(auto_now_add=True)
-    date_updated = models.DateTimeField(auto_now=True)     
-    sequence = models.ForeignKey(
-        'Sequence',
-        on_delete=models.CASCADE)
-
-    def __str__(self):
-        return "{}/{}".format(self.title, self.sequence)
-
     
 class Event(models.Model):
     headline = models.CharField(max_length=150, default=' ')
@@ -129,11 +83,6 @@ class Report_Link(models.Model):
         on_delete=models.CASCADE,
         blank=True,
         null=True)
-    array = models.ForeignKey(
-        'Array',
-        on_delete=models.CASCADE,
-        blank=True,
-        null=True)    
     imageQ = models.BooleanField(default=False)
     image = models.ImageField(upload_to='media/temp', default='', blank=True)        
 
