@@ -11,6 +11,14 @@ class Theme(models.Model):
     class Meta:
         ordering = ('name',)
         
+class Variation(models.Model):
+    name = models.CharField(max_length=100, default=' ')
+    
+    def __str__(self):
+        return self.name
+    
+    class Meta:
+        ordering = ('name',)        
 class Category(models.Model):
     name = models.CharField(max_length=100, default=' ')
     
@@ -27,17 +35,63 @@ class Author(models.Model):
     class Meta:
         ordering = ('name',)        
 
+class Front_Page(models.Model):
+    featureQ = models.BooleanField(default=False)
+    date = models.DateField(auto_now=False, auto_now_add=False)
+    feature_headline = models.CharField(max_length=150, default=' ', blank=True)
+    feature_url = models.CharField(max_length=300, default='', blank=True)
+    feature_pic = models.ImageField(upload_to='media/stock', blank=True, default=' ')
+    feature_pic_credit = models.CharField(max_length=150, blank=True, default=' ')
+    right_pic_1 = models.ImageField(upload_to='media/stock', blank=True, default=' ')
+    right_pic_1_credit = models.CharField(max_length=150, blank=True, default=' ')
+    right_pic_2 = models.ImageField(upload_to='media/stock', blank=True, default=' ')
+    right_pic_2_credit = models.CharField(max_length=150, blank=True, default=' ')
+    middle_pic_1 = models.ImageField(upload_to='media/stock', blank=True, default=' ')
+    middle_pic_1_credit = models.CharField(max_length=150, blank=True, default=' ')
+    middle_pic_2 = models.ImageField(upload_to='media/stock', blank=True, default=' ')
+    middle_pic_2_credit = models.CharField(max_length=150, blank=True, default=' ')
+    left_pic_1 = models.ImageField(upload_to='media/stock', blank=True, default=' ')
+    left_pic_1_credit = models.CharField(max_length=150, blank=True, default=' ')
+    left_pic_2 = models.ImageField(upload_to='media/stock', blank=True, default=' ')    
+    left_pic_2_credit = models.CharField(max_length=150, blank=True, default=' ')
+    variation = models.ForeignKey(
+        'Variation',
+        on_delete=models.CASCADE)
+    slug = models.SlugField(max_length=100, default='date')        
+    
+    def __str__(self):
+        return self.slug
+    class Meta:
+        ordering = ('-date',)        
+
     
 class Event(models.Model):
+    LEFT = 'L'
+    MIDDLE = 'M'
+    RIGHT = 'R'
+    COLUMN_CHOICES = [
+        (LEFT, 'Left'),
+        (MIDDLE, 'Middle'),
+        (RIGHT, 'Right'),
+        ]
     headline = models.CharField(max_length=150, default=' ')
     lead = models.TextField()
     date_created = models.DateField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
-    body = models.TextField()
-    image = models.ImageField(upload_to='media/stock', default='')
-    credit = models.CharField(max_length=200, default='') 
+    body = models.TextField(default=' ')
+    body2 = models.TextField(default=' ')
+    image1 = models.ImageField(upload_to='media/stock', default='')
+    credit1 = models.CharField(max_length=200, default='') 
+    image2 = models.ImageField(upload_to='media/stock', default='')
+    credit2 = models.CharField(max_length=200, default='') 
     videoQ = models.BooleanField(default=False)
-    video = models.CharField(max_length=500, default='', blank=True)     
+    video = models.CharField(max_length=500, default='', blank=True)
+    column = models.CharField(max_length=1, choices=COLUMN_CHOICES, default=LEFT)
+    front_page = models.ForeignKey(
+        'Front_Page',
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True)
     theme = models.ForeignKey(
         'Theme',
         on_delete=models.CASCADE)
@@ -106,7 +160,14 @@ class Other_Link(models.Model):
         on_delete=models.CASCADE,
         blank=True,
         null=True)
-
+    major = models.BooleanField(default=False, blank=True)
+    liberal = models.BooleanField(default=False, blank=True)
+    conservative = models.BooleanField(default=False, blank=True)
+    front_page = models.ForeignKey(
+        'Front_Page',
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True)    
     def __str__(self):
         return "{}/{}".format(self.title, self.media.name)  
         

@@ -5,7 +5,7 @@ from django.template.defaulttags import register
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.urls import reverse
 from django.db.models import F, Q
-from .models import Event, Theme, Report_Link, Other_Link, Blog, Node, Media_Org, Perspective, Link, Node_Dir, Region, Journalist, About, Topic_Link, PoliticalBiasNews, Blog, Analysis, AnalLink, AnalPerspective, PoliticalIssue, STF, STF_Hub, STF_Link, Feature, Feature_Link
+from .models import Event, Front_Page, Variation, Theme, Report_Link, Other_Link, Blog, Node, Media_Org, Perspective, Link, Node_Dir, Region, Journalist, About, Topic_Link, PoliticalBiasNews, Blog, Analysis, AnalLink, AnalPerspective, PoliticalIssue, STF, STF_Hub, STF_Link, Feature, Feature_Link
 
 @register.filter
 def get_item(dictionary, key):
@@ -14,6 +14,16 @@ def get_item(dictionary, key):
     
 def index(request):
 	return render (request, 'index.html')
+	
+def front_page(request, front_page_id, slug):
+    front = get_object_or_404(Front_Page, pk=front_page_id)
+    lefts = Event.objects.filter(front_page__id = front_page_id).filter(column = 'L')
+    middles = Event.objects.filter(front_page__id = front_page_id).filter(column = 'M')
+    rights = Event.objects.filter(front_page__id = front_page_id).filter(column = 'R')
+    majors = Other_Link.objects.filter(front_page__id = front_page_id).filter(major = True)
+    liberals = Other_Link.objects.filter(front_page__id = front_page_id).filter(liberal = True)
+    conservatives = Other_Link.objects.filter(front_page__id = front_page_id).filter(conservative = True)    
+    return render (request, 'front-page.html', {'front': front, 'lefts': lefts, 'middles': middles, 'rights': rights, 'majors': majors, 'liberals': liberals, 'conservatives': conservatives, })
 
 def indexUC(request):
     recent_events = Event.objects.all().order_by('-date_updated')[0:5]
