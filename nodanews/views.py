@@ -21,7 +21,7 @@ def front_page(request, front_page_id, slug):
     left_blogs = {
         n: Blog.objects.filter(event__id = n.id).order_by('-date_posted')[0:3] for n in lefts }
     left_links = {
-        n: Report_Link.objects.filter(event__id = n.id).order_by('-date_posted')[0:3] for n in lefts }
+        n: Report_Link.objects.filter(event__id = n.id).order_by('-posted')[0:3] for n in lefts }
     middles = Event.objects.filter(front_page__id = front_page_id).filter(column = 'M')
     rights = Event.objects.filter(front_page__id = front_page_id).filter(column = 'R')
     majors = Other_Link.objects.filter(front_page__id = front_page_id).filter(major = True)
