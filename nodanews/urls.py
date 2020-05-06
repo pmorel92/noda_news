@@ -7,7 +7,7 @@ urlpatterns = [
 	path('', views.index, name='index'),
 	path('test/', views.indexUC, name='work in progress'),
 	path('event/<int:event_id>/<slug:slug>/', views.event, name="event view"),
-
+	path('fp/<int:front_page_id>/<slug:slug>/', views.front_page, name="front page view"),
 ###############Archive##########	
 
 	path('about/', views.about, name='about'),

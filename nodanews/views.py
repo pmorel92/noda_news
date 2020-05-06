@@ -18,12 +18,16 @@ def index(request):
 def front_page(request, front_page_id, slug):
     front = get_object_or_404(Front_Page, pk=front_page_id)
     lefts = Event.objects.filter(front_page__id = front_page_id).filter(column = 'L')
+    left_blogs = {
+        n: Blog.objects.filter(event__id = n.id).order_by('-date_posted')[0:3] for n in lefts }
+    left_links = {
+        n: Report_Link.objects.filter(event__id = n.id).order_by('-date_posted')[0:3] for n in lefts }
     middles = Event.objects.filter(front_page__id = front_page_id).filter(column = 'M')
     rights = Event.objects.filter(front_page__id = front_page_id).filter(column = 'R')
     majors = Other_Link.objects.filter(front_page__id = front_page_id).filter(major = True)
     liberals = Other_Link.objects.filter(front_page__id = front_page_id).filter(liberal = True)
     conservatives = Other_Link.objects.filter(front_page__id = front_page_id).filter(conservative = True)    
-    return render (request, 'front-page.html', {'front': front, 'lefts': lefts, 'middles': middles, 'rights': rights, 'majors': majors, 'liberals': liberals, 'conservatives': conservatives, })
+    return render (request, 'front-page.html', {'front': front, 'lefts': lefts, 'left_blogs': left_blogs, 'left_links': left_links, 'middles': middles, 'rights': rights, 'majors': majors, 'liberals': liberals, 'conservatives': conservatives, })
 
 def indexUC(request):
     recent_events = Event.objects.all().order_by('-date_updated')[0:5]

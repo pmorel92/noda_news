@@ -42,21 +42,6 @@ class Front_Page(models.Model):
     feature_url = models.CharField(max_length=300, default='', blank=True)
     feature_pic = models.ImageField(upload_to='media/stock', blank=True, default=' ')
     feature_pic_credit = models.CharField(max_length=150, blank=True, default=' ')
-    right_pic_1 = models.ImageField(upload_to='media/stock', blank=True, default=' ')
-    right_pic_1_credit = models.CharField(max_length=150, blank=True, default=' ')
-    right_pic_2 = models.ImageField(upload_to='media/stock', blank=True, default=' ')
-    right_pic_2_credit = models.CharField(max_length=150, blank=True, default=' ')
-    middle_pic_1 = models.ImageField(upload_to='media/stock', blank=True, default=' ')
-    middle_pic_1_credit = models.CharField(max_length=150, blank=True, default=' ')
-    middle_pic_2 = models.ImageField(upload_to='media/stock', blank=True, default=' ')
-    middle_pic_2_credit = models.CharField(max_length=150, blank=True, default=' ')
-    left_pic_1 = models.ImageField(upload_to='media/stock', blank=True, default=' ')
-    left_pic_1_credit = models.CharField(max_length=150, blank=True, default=' ')
-    left_pic_2 = models.ImageField(upload_to='media/stock', blank=True, default=' ')    
-    left_pic_2_credit = models.CharField(max_length=150, blank=True, default=' ')
-    variation = models.ForeignKey(
-        'Variation',
-        on_delete=models.CASCADE)
     slug = models.SlugField(max_length=100, default='date')        
     
     def __str__(self):
@@ -81,6 +66,7 @@ class Event(models.Model):
     body = models.TextField(default=' ')
     body2 = models.TextField(default=' ')
     image1 = models.ImageField(upload_to='media/stock', default='')
+    displayQ = models.BooleanField(default=False)    
     credit1 = models.CharField(max_length=200, default='') 
     image2 = models.ImageField(upload_to='media/stock', default='')
     credit2 = models.CharField(max_length=200, default='') 
