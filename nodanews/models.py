@@ -37,6 +37,7 @@ class Author(models.Model):
 
 class Front_Page(models.Model):
     featureQ = models.BooleanField(default=False)
+    title = models.CharField(max_length=100, default='date written out')
     date = models.DateField(auto_now=False, auto_now_add=False)
     feature_headline = models.CharField(max_length=150, default=' ', blank=True)
     feature_url = models.CharField(max_length=300, default='', blank=True)
