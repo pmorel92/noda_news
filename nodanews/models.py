@@ -60,17 +60,17 @@ class Event(models.Model):
         (MIDDLE, 'Middle'),
         (RIGHT, 'Right'),
         ]
-    headline = models.CharField(max_length=150, default=' ')
-    lead = models.TextField()
+    headline = models.CharField(max_length=150, default=' ', blank=True)
+    lead = models.TextField(blank=True)
     date_created = models.DateField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
-    body = models.TextField(default=' ')
-    body2 = models.TextField(default=' ')
-    image1 = models.ImageField(upload_to='media/stock', default='')
+    body = models.TextField(default=' ', blank=True)
+    body2 = models.TextField(default=' ', blank=True)
+    image1 = models.ImageField(upload_to='media/stock', default='', blank=True)
     displayQ = models.BooleanField(default=False)    
-    credit1 = models.CharField(max_length=200, default='') 
-    image2 = models.ImageField(upload_to='media/stock', default='')
-    credit2 = models.CharField(max_length=200, default='') 
+    credit1 = models.CharField(max_length=200, default='', blank=True) 
+    image2 = models.ImageField(upload_to='media/stock', default='', blank=True)
+    credit2 = models.CharField(max_length=200, default='', blank=True) 
     videoQ = models.BooleanField(default=False)
     video = models.CharField(max_length=500, default='', blank=True)
     column = models.CharField(max_length=1, choices=COLUMN_CHOICES, default=LEFT)
@@ -81,7 +81,8 @@ class Event(models.Model):
         blank=True)
     theme = models.ForeignKey(
         'Theme',
-        on_delete=models.CASCADE)
+        on_delete=models.CASCADE,
+        blank=True)
     author = models.ForeignKey(
         'Author',
         on_delete=models.CASCADE,
