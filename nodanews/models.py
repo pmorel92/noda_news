@@ -89,6 +89,7 @@ class Event(models.Model):
         null=True,
         blank=True)
     slug = models.SlugField(max_length=100, default=' ')
+    readyQ = models.BooleanField(default=False)
     
     def __str__(self):
         return self.headline
