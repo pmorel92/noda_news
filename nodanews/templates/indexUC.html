@@ -48,6 +48,38 @@
           {% endfor %}
         </ul>
     </div>
+    <div id='majors'>
+      <h1>Recent Headlines</h1>
+        <ul id='majors-list'>
+          {% for major in majors %}
+            <li class='major-link'>
+							<a href='{{major.url}}' class='anchor-tag'>
+								<p class='major-headline'>{{major.title}}</p>
+							</a>
+							<a href='http://www.nodanews.com/media_dir/{{major.media.id}}/{{major.media.slug}}' class='media-anchor-tag'>
+								<p class='major-media'>--{{major.media.name}}</p>
+								<img src="https://nodastorage.s3.amazonaws.com/media/{{major.media.logo}}" class="media-logo" alt=""/>								
+							</a>
+            </li>
+          {% endfor %}
+        </ul>
+      <div id='events'>
+        <h1>Recent Articles</h1>
+          <ul id='events-list'>
+            {% for event in events %}
+              <li class='event-link'>
+              	<a href='https://www.nodanews.com/event/{{event.id}}/{{event.slug}}/' class='anchor-tag'>
+					        <img src="https://nodastorage.s3.amazonaws.com/media/{{event.image1}}" class="event-image" alt=""/>
+			            	<p class='event-headline'>{{event.headline}}</p>
+		          	</a>
+              </li>
+            
+            {% endfor %}
+            
+          </ul>
+        
+      </div>
+    </div>
   </div>
 </body>
 </html>

@@ -58,7 +58,7 @@
 	{% endif %}
 		<p id="text">{{event.body|linebreaksbr}}</p>
 		<img src="https://nodastorage.s3.amazonaws.com/media/{{event.image2}}" class="image" alt=""/>
-			<p id='credit'>Credit: {{event.credit2}}</p>
+			<p id='credit'>{{event.credit2}}</p>
 		<p id="text">{{event.body2|linebreaksbr}}</p>
 </div>
 <div id="bottom">
@@ -73,7 +73,7 @@
 		{% endfor %}
 	</ul>	
 	<ul class="link_list">
-	  <li class='section_title'>Comentary</li>	
+	  <li class='section_title'>Commentary</li>	
 	{% for blog in blogs %}
 		<li class="blog">
 			<a href="http://www.nodanews.com/blog/{{blog.id}}/{{blog.slug}}" style="text-decoration: none;color: black" class="link" target="_blank">

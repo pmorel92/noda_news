@@ -32,7 +32,7 @@ def front_page(request, front_page_id, slug):
 def indexUC(request):
     fronts = Front_Page.objects.all().order_by('-date')[0:30]
     recent_events = Event.objects.all().filter(readyQ=True).order_by('-date_updated')[0:15]
-    majors = Other_Link.objects.filter(major = True)
+    majors = Other_Link.objects.filter(major = True) [0:15]
     return render (request, 'indexUC.html', {'recent_events': recent_events, 'fronts': fronts, 'majors': majors })
 
 def event(request, event_id, slug):
