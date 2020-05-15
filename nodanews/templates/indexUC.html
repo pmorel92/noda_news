@@ -68,9 +68,9 @@
           <ul id='events-list'>
             {% for recent_event in recent_events %}
               <li class='event-link'>
-              	<a href='https://www.nodanews.com/event/{{recent_event.id}}/{{recent_event.slug}}/' class='anchor-tag'>
+			            <p class='event-headline'>{{recent_event.headline}}</p>                
+              	  <a href='https://www.nodanews.com/event/{{recent_event.id}}/{{recent_event.slug}}/' class='anchor-tag'>
 					        <img src="https://nodastorage.s3.amazonaws.com/media/{{recent_event.image1}}" class="event-image" alt=""/>
-			            	<p class='event-headline'>{{recent_event.headline}}</p>
 		          	</a>
               </li>
             
