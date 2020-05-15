@@ -75,9 +75,13 @@
 					<div class='mid-section-link-lists-div'>
 						<ul class='mid-section-link-lists'>
 							{% for report_link in left_links|get_item:left %}
-								<a href='{{report_link.url}}' class='mid-section-links'>
-									<li class='mid-section-list-items'>{{report_link.title}}</li>
-								</a>
+								<li class='mid-section-list-items'>
+									<a href='{{report_link.url}}' class='mid-section-links'>
+										<p>{{report_link.title}}</p></a>
+											<a href='http://www.nodanews.com/media_dir/{{report_link.media.id}}/{{report_link.media.slug}}' class='major-media-anchor-tag'>
+												<p class='major-media'>--{{report_link.media.name}}</p>
+											</a>
+								</li>
 							{% endfor %}
 						</ul>
 					</div>					
@@ -94,6 +98,28 @@
 				<p class='mid-headline'>{{middle.headline}}</p>
 			</a>
 				<p class='mid-section-text'>{{middle.body}}</p>
+					<div class='mid-section-link-lists-div'>
+						<ul class='mid-section-link-lists'>
+							{% for blog in middle_blogs|get_item:middle %}
+								<a href='https://www.nodanews.com/blog/{{blog.id}}/{{blog.slug}}/' class='mid-section-links'>
+									<li class='mid-section-list-items'>{{blog.headline}}</li>
+								</a>
+							{% endfor %}
+						</ul>
+					</div>
+					<div class='mid-section-link-lists-div'>
+						<ul class='mid-section-link-lists'>
+							{% for report_link in middle_links|get_item:middle %}
+								<li class='mid-section-list-items'>
+									<a href='{{report_link.url}}' class='mid-section-links'>
+										<p>{{report_link.title}}</p></a>
+											<a href='http://www.nodanews.com/media_dir/{{report_link.media.id}}/{{report_link.media.slug}}' class='major-media-anchor-tag'>
+												<p class='major-media'>--{{report_link.media.name}}</p>
+											</a>
+								</li>
+							{% endfor %}
+						</ul>
+					</div>				
 				<hr class='mid-section-hr'>
 			{% endfor %}
 		</div>		
@@ -107,6 +133,28 @@
 				<p class='mid-headline'>{{right.headline}}</p>
 			</a>
 				<p class='mid-section-text'>{{right.body}}</p>
+					<div class='mid-section-link-lists-div'>
+						<ul class='mid-section-link-lists'>
+							{% for blog in right_blogs|get_item:right %}
+								<a href='https://www.nodanews.com/blog/{{blog.id}}/{{blog.slug}}/' class='mid-section-links'>
+									<li class='mid-section-list-items'>{{blog.headline}}</li>
+								</a>
+							{% endfor %}
+						</ul>
+					</div>
+					<div class='mid-section-link-lists-div'>
+						<ul class='mid-section-link-lists'>
+							{% for report_link in right_links|get_item:right %}
+								<li class='mid-section-list-items'>
+									<a href='{{report_link.url}}' class='mid-section-links'>
+										<p>{{report_link.title}}</p></a>
+											<a href='http://www.nodanews.com/media_dir/{{report_link.media.id}}/{{report_link.media.slug}}' class='major-media-anchor-tag'>
+												<p class='major-media'>--{{report_link.media.name}}</p>
+											</a>
+								</li>
+							{% endfor %}
+						</ul>
+					</div>				
 				<hr class='mid-section-hr'>
 			{% endfor %}
 		</div>		
