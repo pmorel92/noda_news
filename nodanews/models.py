@@ -19,14 +19,7 @@ class Variation(models.Model):
     
     class Meta:
         ordering = ('name',)        
-class Category(models.Model):
-    name = models.CharField(max_length=100, default=' ')
-    
-    def __str__(self):
-        return self.name
-    
-    class Meta:
-        ordering = ('name',)        
+      
 class Author(models.Model):
     name = models.CharField(max_length=100, default='name here')
     image = models.ImageField(upload_to='media/stock', default='')    
@@ -130,7 +123,7 @@ class Report_Link(models.Model):
     image = models.ImageField(upload_to='media/temp', default='', blank=True)        
 
     def __str__(self):
-        return "{}/{}/{}".format(self.title, self.event, self.array)  
+        return "{}/{}".format(self.title, self.event)  
         
     class Meta:
         ordering = ('-posted',)
@@ -144,11 +137,6 @@ class Other_Link(models.Model):
         on_delete=models.CASCADE,)
     imageQ = models.BooleanField(default=False)
     image = models.ImageField(upload_to='media/temp', default='', blank=True)
-    category = models.ForeignKey(
-        'Category',
-        on_delete=models.CASCADE,
-        blank=True,
-        null=True)
     major = models.BooleanField(default=False, blank=True)
     liberal = models.BooleanField(default=False, blank=True)
     conservative = models.BooleanField(default=False, blank=True)
