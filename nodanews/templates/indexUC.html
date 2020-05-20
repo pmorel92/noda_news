@@ -43,7 +43,7 @@
       <a href='https://www.nodanews.com/fp/{{today.id}}/{{today.slug}}/' class='today-tag'><h1>Check out the News For {{today.title}}</h1>
                       {% if today.featureQ %}
                     <p class='today-feature-headline'>{{today.feature_headline}}</p>
-                		<img src="https://nodastorage.s3.amazonaws.com/media/{{today}}" class="feature-pic" alt=""/>								
+                		<img src="https://nodastorage.s3.amazonaws.com/media/{{today.feature_pic}}" class="feature-pic" alt=""/>								
 							       {% endif %}
       
       </a>
@@ -57,7 +57,7 @@
               <a href='https://www.nodanews.com/fp/{{front.id}}/{{front.slug}}' class='anchor-tag'><p>Front Page News for {{front.title}}</p>
                 {% if front.featureQ %}
                     <p class='feature-headline'>{{front.feature_headline}}</p>
-                		<img src="https://nodastorage.s3.amazonaws.com/media/{{feature_pic}}" class="feature-pic" alt=""/>								
+                		<img src="https://nodastorage.s3.amazonaws.com/media/{{front.feature_pic}}" class="feature-pic" alt=""/>								
 							 {% endif %}
 							 
               </a>
