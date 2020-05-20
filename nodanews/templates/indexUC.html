@@ -54,7 +54,7 @@
         <ul id='front-pages-list'>
           {% for front in fronts %}
             <li class='front-page-dates'>
-              <a href='https://www.nodanews.com/fp/{{front.id}}/{{front.slug}}' class='anchor-tag'><p>Front Page News for {{front.title}}</p>
+              <a href='https://www.nodanews.com/fp/{{front.id}}/{{front.slug}}' class='front-tag'><p>Front Page News for {{front.title}}</p>
                 {% if front.featureQ %}
                     <p class='feature-headline'>{{front.feature_headline}}</p>
                 		<img src="https://nodastorage.s3.amazonaws.com/media/{{front.feature_pic}}" class="feature-pic" alt=""/>								
