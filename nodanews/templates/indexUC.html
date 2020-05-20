@@ -40,7 +40,13 @@
   <div id='main'>
     <div id='today'>
       {% for today in todays %}
-      <a href='https://www.nodanews.com/fp/{{today.id}}/{{today.slug}}/' class='today-tag'><h1>Check out the News For {{today.title}}</h1></a>
+      <a href='https://www.nodanews.com/fp/{{today.id}}/{{today.slug}}/' class='today-tag'><h1>Check out the News For {{today.title}}</h1>
+                      {% if today.featureQ %}
+                    <p class='today-feature-headline'>{{today.feature_headline}}</p>
+                		<img src="https://nodastorage.s3.amazonaws.com/media/{{today}}" class="feature-pic" alt=""/>								
+							       {% endif %}
+      
+      </a>
       {% endfor %}
     </div>
     <div id='front-pages'>
