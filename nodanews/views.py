@@ -38,10 +38,11 @@ def front_page(request, front_page_id, slug):
     return render (request, 'front-page.html', {'front': front, 'lefts': lefts, 'left_blogs': left_blogs, 'left_links': left_links, 'middles': middles, 'middle_links': middle_links, 'middle_blogs': middle_blogs, 'right_blogs': right_blogs, 'right_links': right_links, 'rights': rights, 'majors': majors, 'liberals': liberals, 'conservatives': conservatives, })
 
 def indexUC(request):
-    fronts = Front_Page.objects.all().order_by('-date')[0:30]
+    todays = Front_Page.objects.all()[0:1]
+    fronts = Front_Page.objects.all().order_by('-date')[1:30]
     recent_events = Event.objects.all().filter(readyQ=True).order_by('-date_updated')[0:15]
     majors = Other_Link.objects.filter(major = True) [0:15]
-    return render (request, 'indexUC.html', {'recent_events': recent_events, 'fronts': fronts, 'majors': majors })
+    return render (request, 'indexUC.html', {'recent_events': recent_events, 'fronts': fronts, 'majors': majors, 'todays': todays })
 
 def event(request, event_id, slug):
     event = get_object_or_404(Event, pk=event_id)
